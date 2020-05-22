@@ -1,0 +1,22 @@
+version 'unspecified'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':base-api')
+    compile group: 'org.assertj', name: 'assertj-core', version: '3.6.1'
+    compile group: 'junit', name: 'junit', version: '4.12'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId 'com.twosigma'
+            artifactId 'beakerx-kernel-base-test'
+            version "$beakerxVersion"
+            from components.java
+        }
+    }
+}
