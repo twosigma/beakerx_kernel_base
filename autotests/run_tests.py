@@ -19,8 +19,16 @@ import sys
 import argparse
 import signal
 import subprocess
-import psutil
 import platform
+from subprocess import check_output, CalledProcessError
+
+def kill_processes(name):
+    try:
+        pidlist = map(int, check_output(['pgrep', '-f', name]).split())
+    except CalledProcessError:
+        pidlist = []
+    for pid in pidlist:
+        os.kill(pid, signal.SIGKILL)
 
 here = os.path.abspath(os.path.dirname(__file__))
 beakerx_dir = os.path.abspath(os.path.join(here, ".."))
@@ -46,8 +54,12 @@ if args.tst:
     tst_templ = args.tst
 
 # start jupyter notebook
-nb_command = 'conda activate %(env)s && jupyter %(app)s --no-browser --notebook-dir="%(dir)s" --NotebookApp.token=""' % { "env": conda_env, "app" : cur_app, "dir" : beakerx_dir }
-beakerx = subprocess.Popen(nb_command, stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True)
+if platform.system() == 'Windows':
+    nb_command = 'conda activate %(env)s && jupyter %(app)s --no-browser --notebook-dir="%(dir)s" --NotebookApp.token=""' % { "env": conda_env, "app" : cur_app, "dir" : beakerx_dir }
+    beakerx = subprocess.Popen(nb_command, stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True)
+else:
+    nb_command = 'eval "$(conda shell.bash hook)" && conda activate %(env)s && jupyter %(app)s --no-browser --notebook-dir="%(dir)s" --NotebookApp.token=""' % { "env": conda_env, "app" : cur_app, "dir" : beakerx_dir }
+    beakerx = subprocess.Popen(nb_command, shell=True, executable="/bin/bash", preexec_fn=os.setsid, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
 # wait for notebook server to start up
 while 1:
     line = beakerx.stdout.readline().decode('utf-8').strip()
@@ -69,6 +81,6 @@ if platform.system() == 'Windows':
             os.kill(proc.pid, signal.SIGTERM)
 else:
     os.killpg(os.getpgid(beakerx.pid), signal.SIGKILL)
-    test_util.kill_processes('java')
-    test_util.kill_processes('jupyter')
-    test_util.kill_processes('webdriver')
+    kill_processes('java')
+    kill_processes('jupyter')
+    kill_processes('webdriver')

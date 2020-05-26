@@ -24,7 +24,7 @@ Running the e2e tests from its GitHub source code requires:
 
 ## Run the tests
 
-To run tests use `run_tests.py` with arguments:
+To run tests use `python run_tests.py` with arguments:
 ```
 optional arguments:
   -h, --help  show this help message and exit
@@ -34,7 +34,7 @@ optional arguments:
 ```
 If we run `run_tests.py` script without any arguments it'll use default values as there:
 ```
-./run_tests.py --env=beakerx --app=notebook --tst=groovy.*
+python run_tests.py --env=beakerx --app=notebook --tst=groovy.*
 ```
 
 By default, a jupyter notebook server runs locally at 127.0.0.1:8888 and is accessible only from localhost. 
