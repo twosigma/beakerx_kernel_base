@@ -20,6 +20,7 @@ import argparse
 import signal
 import subprocess
 import platform
+import psutil
 from subprocess import check_output, CalledProcessError
 
 def kill_processes(name):
