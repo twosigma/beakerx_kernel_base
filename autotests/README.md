@@ -19,12 +19,12 @@
 Running the e2e tests from its GitHub source code requires: 
 * chrome browser (80 or higher) 
 * [conda](https://www.anaconda.com/download/)
-* java (1.8 or higher)
+* java (1.8 or higher) and Gradle (5.2 or higher)
 * any beakerx kernel
 
 ## Run the tests
 
-To run tests use `run_tests.py` with options:
+To run tests use `run_tests.py` with arguments:
 ```
 optional arguments:
   -h, --help  show this help message and exit
@@ -37,4 +37,4 @@ If we run `run_tests.py` script without any arguments it'll use default values a
 ./run_tests.py --env=beakerx --app=notebook --tst=groovy.*
 ```
 
-By default, a notebook server runs locally at 127.0.0.1:8888 and is accessible only from localhost. 
+By default, a jupyter notebook server runs locally at 127.0.0.1:8888 and is accessible only from localhost. 
