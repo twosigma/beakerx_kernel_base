@@ -1,3 +1,19 @@
+/*
+ *  Copyright 2020 TWO SIGMA OPEN SOURCE, LLC
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
 package com.twosigma.beakerx.autotests;
 
 import org.openqa.selenium.By;
@@ -43,13 +59,8 @@ public abstract class BasePageObject {
     public abstract By getAllOutputsStderrSelector();
 
     public void doubleClick(By locator){
-        //Double click the button to launch an alertbox
-//        Actions action = new Actions(webDriver);
         WebElement element = webDriver.findElement(locator);
-//        System.out.println("---------------------------------------");
-//        System.out.println(element.getAttribute("innerHTML"));
         action.moveToElement(element).doubleClick().pause(500).perform();
-//        action.doubleClick(element).perform();
     }
 
     public void pause(int mseconds){
