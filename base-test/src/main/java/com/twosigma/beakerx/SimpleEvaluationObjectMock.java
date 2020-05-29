@@ -24,9 +24,11 @@ import java.util.List;
 import java.util.Queue;
 
 public class SimpleEvaluationObjectMock implements EvaluationObject {
+  private String code;
   private KernelTest.SeoConfigurationFactoryMock seoConfigurationFactoryMock;
 
-  public SimpleEvaluationObjectMock(String ok, KernelTest.SeoConfigurationFactoryMock seoConfigurationFactoryMock) {
+  public SimpleEvaluationObjectMock(String code, KernelTest.SeoConfigurationFactoryMock seoConfigurationFactoryMock) {
+    this.code = code;
     this.seoConfigurationFactoryMock = seoConfigurationFactoryMock;
   }
 
@@ -61,7 +63,7 @@ public class SimpleEvaluationObjectMock implements EvaluationObject {
 
   @Override
   public String getExpression() {
-    return null;
+    return code;
   }
 
   @Override
