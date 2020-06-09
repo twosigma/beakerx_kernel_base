@@ -77,7 +77,7 @@ result = subprocess.call(tst_command, shell=True)
 # kill unused processes
 if platform.system() == 'Windows':
     for proc in psutil.process_iter():
-        if proc.name() in ["jupyter-lab.exe", "jupyter.exe", "python.exe", "chromedriver.exe"]:
+        if proc.name() in ["jupyter-lab.exe", "jupyter.exe", "jupyter-notebook.exe", "chromedriver.exe"]:
             print(proc)
             os.kill(proc.pid, signal.SIGTERM)
 else:

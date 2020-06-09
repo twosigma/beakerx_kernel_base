@@ -24,6 +24,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class NotebookPO  extends BasePageObject  {
 
+    WebDriverWait wait = new WebDriverWait(webDriver, 20);
+
     protected NotebookPO(WebDriver webDriver) {
         super(webDriver);
     }
@@ -31,6 +33,7 @@ public class NotebookPO  extends BasePageObject  {
     @Override
     public void runNotebookByUrl(String url) {
         webDriver.get("http://127.0.0.1:8888/notebooks" + url);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='notification_kernel']//span[text()='Kernel ready']")));
         waitKernelIdleIcon(10);
     }
 
@@ -45,7 +48,6 @@ public class NotebookPO  extends BasePageObject  {
 
     private void clickRunCell(){
         By runButtonSelector = By.cssSelector("button[data-jupyter-action=\"jupyter-notebook:run-cell-and-select-next\"]");
-        WebDriverWait wait = new WebDriverWait(webDriver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(runButtonSelector));
 
         action.click(webDriver.findElement(runButtonSelector)).perform();
@@ -59,7 +61,6 @@ public class NotebookPO  extends BasePageObject  {
 
     @Override
     public void waitKernelIdleIcon(int timeOutInSeconds) {
-        WebDriverWait wait = new WebDriverWait(webDriver, timeOutInSeconds);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("i.kernel_idle_icon")));
     }
 
@@ -68,7 +69,6 @@ public class NotebookPO  extends BasePageObject  {
         this.clickCellAllOutputClear();
         webDriver.findElement(By.partialLinkText("File")).click();
 
-        WebDriverWait wait = new WebDriverWait(webDriver, 3);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li#close_and_halt")));
         action.moveToElement(webDriver.findElement(By.cssSelector("li#close_and_halt"))).click().perform();
     }
@@ -76,7 +76,6 @@ public class NotebookPO  extends BasePageObject  {
     private void clickCellAllOutputClear(){
         webDriver.findElement(By.partialLinkText("Cell")).click();
 
-        WebDriverWait wait = new WebDriverWait(webDriver, 3);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li#all_outputs")));
         action.moveToElement(webDriver.findElement(By.cssSelector("li#all_outputs"))).perform();
 
