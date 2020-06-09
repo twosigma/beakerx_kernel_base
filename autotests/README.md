@@ -20,6 +20,7 @@ Running the e2e tests from its GitHub source code requires:
 * chrome browser (80 or higher) 
 * [conda](https://www.anaconda.com/download/)
 * java (1.8 or higher) and Gradle (5.2 or higher)
+* [psutil](https://pypi.org/project/psutil/)
 * any beakerx kernel
 
 ## Run the tests
