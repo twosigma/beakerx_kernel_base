@@ -81,7 +81,7 @@ public class MagicKernelManager {
 
   protected String[] getPy4jCommand() {
     return new String[]{
-            "beakerx",
+            "beakerx_kernel_autotranslation",
             "py4j_server",
             "--port", port == null ? DEFAULT_PORT : String.valueOf(port),
             "--pyport", pythonPort == null ? DEFAULT_PYTHON_PORT : String.valueOf(pythonPort),
