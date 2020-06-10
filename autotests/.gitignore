@@ -1,9 +1,0 @@
-# IntelliJ
-.idea/
-
-# Gradle
-.gradle/
-/build/
-
-# Python
-__pycache__/
