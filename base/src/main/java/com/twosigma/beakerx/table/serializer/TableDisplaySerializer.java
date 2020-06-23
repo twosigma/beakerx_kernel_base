@@ -26,6 +26,12 @@ import java.util.List;
 
 public class TableDisplaySerializer extends ObservableTableDisplaySerializer<TableDisplay> {
 
+  private TableSettings settings;
+
+  public TableDisplaySerializer(TableSettings settings) {
+    this.settings = settings;
+  }
+
   public static final String ALIGNMENT_FOR_COLUMN = "alignmentForColumn";
   public static final String ALIGNMENT_FOR_TYPE = "alignmentForType";
   public static final String COLUMNS_FROZEN = "columnsFrozen";
@@ -49,6 +55,8 @@ public class TableDisplaySerializer extends ObservableTableDisplaySerializer<Tab
   public static final String TOOLTIPS = "tooltips";
   public static final String LOADING_MODE = "loadingMode";
   public static final String ROWS_TO_SHOW = "rowsToShow";
+  public static final String AUTO_LINK_TABLE_LINKS = "auto_link_table_links";
+  public static final String SHOW_PUBLICATION = "show_publication";
 
 
   @Override
@@ -87,6 +95,10 @@ public class TableDisplaySerializer extends ObservableTableDisplaySerializer<Tab
       jgen.writeObjectField(HAS_INDEX, tableDisplay.getHasIndex());
       jgen.writeObjectField(TIME_ZONE, tableDisplay.getTimeZone());
       jgen.writeObjectField(LOADING_MODE, TableDisplay.getLoadingMode());
+
+      jgen.writeObjectField(AUTO_LINK_TABLE_LINKS, settings.get(AUTO_LINK_TABLE_LINKS));
+      jgen.writeObjectField(SHOW_PUBLICATION, settings.get(SHOW_PUBLICATION));
+
       if (TableDisplay.getLoadingMode().equals(TableDisplayLoadingMode.ALL)) {
         loadingAllMode(tableDisplay, jgen, tableDisplay.takeAllData());
       } else {

@@ -41,6 +41,7 @@ import com.twosigma.beakerx.table.serializer.HTMLStringFormatSerializer;
 import com.twosigma.beakerx.table.serializer.HeatmapHighlighterSerializer;
 import com.twosigma.beakerx.table.serializer.ImageStringFormatSerializer;
 import com.twosigma.beakerx.table.serializer.TableDisplaySerializer;
+import com.twosigma.beakerx.table.serializer.TableSettings;
 import com.twosigma.beakerx.table.serializer.ThreeColorHeatmapHighlighterSerializer;
 import com.twosigma.beakerx.table.serializer.TimeStringFormatSerializer;
 import com.twosigma.beakerx.table.serializer.UniqueEntriesHighlighterSerializer;
@@ -79,18 +80,24 @@ import static com.twosigma.beakerx.table.serializer.TableDisplaySerializer.VALUE
 
 public class TableDisplayToJson {
 
-  private static ObjectMapper mapper;
+  private ObjectMapper mapper;
+  private TableSettings settings;
 
-  static {
+  public TableDisplayToJson() {
+    this(new BxTableSettings());
+  }
+
+  public TableDisplayToJson(TableSettings settings) {
+    this.settings = settings;
     SimpleModule module = tableDisplayModule();
     mapper = new ObjectMapper();
     mapper.enable(WRITE_ENUMS_USING_TO_STRING);
     mapper.registerModule(module);
   }
 
-  public static SimpleModule tableDisplayModule() {
+  public SimpleModule tableDisplayModule() {
     SimpleModule module = new SimpleModule("TableDisplaySerializer", new Version(1, 0, 0, null));
-    module.addSerializer(TableDisplay.class, new TableDisplaySerializer());
+    module.addSerializer(TableDisplay.class, new TableDisplaySerializer(settings));
     module.addSerializer(ValueStringFormat.class, new ValueStringFormatSerializer());
     module.addSerializer(DecimalStringFormat.class, new DecimalStringFormatSerializer());
     module.addSerializer(HTMLStringFormat.class, new HTMLStringFormatSerializer());
@@ -106,15 +113,15 @@ public class TableDisplayToJson {
     return module;
   }
 
-  public static Map toJson(Object item) {
+  public Map toJson(Object item) {
     return mapper.convertValue(item, Map.class);
   }
 
-  public static List toJsonList(Object item) {
+  public List toJsonList(Object item) {
     return mapper.convertValue(item, List.class);
   }
 
-  static Map<Object, Object> serializeStringFormatForType(Map<ColumnType, TableDisplayStringFormat> stringFormatForType) {
+  public Map<Object, Object> serializeStringFormatForType(Map<ColumnType, TableDisplayStringFormat> stringFormatForType) {
     Map<String, Map> result = new LinkedHashMap<>();
     for (Map.Entry<ColumnType, TableDisplayStringFormat> pair : stringFormatForType.entrySet()) {
       result.put(pair.getKey().getType(), toJson(pair.getValue()));
@@ -124,7 +131,7 @@ public class TableDisplayToJson {
     return value;
   }
 
-  static Map<Object, Object> serializeAlignmentForColumn(Map<String, TableDisplayAlignmentProvider> alignmentForColumn) {
+  public Map<Object, Object> serializeAlignmentForColumn(Map<String, TableDisplayAlignmentProvider> alignmentForColumn) {
     Map<String, Object> result = new LinkedHashMap<>();
     for (Map.Entry<String, TableDisplayAlignmentProvider> pair : alignmentForColumn.entrySet()) {
       result.put(pair.getKey(), pair.getValue().toString());
@@ -134,7 +141,7 @@ public class TableDisplayToJson {
     return value;
   }
 
-  static Map<Object, Object> serializeStringFormatForColumn(Map<String, TableDisplayStringFormat> stringFormatForColumn) {
+  public Map<Object, Object> serializeStringFormatForColumn(Map<String, TableDisplayStringFormat> stringFormatForColumn) {
     Map<String, Object> result = new LinkedHashMap<>();
     for (Map.Entry<String, TableDisplayStringFormat> pair : stringFormatForColumn.entrySet()) {
       result.put(pair.getKey(), toJson(pair.getValue()));
@@ -144,7 +151,7 @@ public class TableDisplayToJson {
     return value;
   }
 
-  static Map<Object, Object> serializeRendererForType(Map<ColumnType, TableDisplayCellRenderer> rendererForType) {
+  public Map<Object, Object> serializeRendererForType(Map<ColumnType, TableDisplayCellRenderer> rendererForType) {
     Map<String, Object> result = new LinkedHashMap<>();
     for (Map.Entry<ColumnType, TableDisplayCellRenderer> pair : rendererForType.entrySet()) {
       result.put(pair.getKey().getType(), toJson(pair.getValue()));
@@ -154,7 +161,7 @@ public class TableDisplayToJson {
     return value;
   }
 
-  static Map<Object, Object> serializeRendererForColumn(Map<String, TableDisplayCellRenderer> rendererMap) {
+  public Map<Object, Object> serializeRendererForColumn(Map<String, TableDisplayCellRenderer> rendererMap) {
     Map<String, Object> result = new LinkedHashMap<>();
     for (Map.Entry<String, TableDisplayCellRenderer> pair : rendererMap.entrySet()) {
       result.put(pair.getKey(), toJson(pair.getValue()));
@@ -164,7 +171,7 @@ public class TableDisplayToJson {
     return value;
   }
 
-  static Map<Object, Object> serializeAlignmentForType(Map<ColumnType, TableDisplayAlignmentProvider> map) {
+  public Map<Object, Object> serializeAlignmentForType(Map<ColumnType, TableDisplayAlignmentProvider> map) {
     Map<String, Object> result = new LinkedHashMap<>();
     for (Map.Entry<ColumnType, TableDisplayAlignmentProvider> pair : map.entrySet()) {
       result.put(pair.getKey().toString(), pair.getValue().toString());
@@ -174,7 +181,7 @@ public class TableDisplayToJson {
     return value;
   }
 
-  static Map<Object, Object> serializeColumnsFrozen(Map<String, Boolean> map) {
+  public Map<Object, Object> serializeColumnsFrozen(Map<String, Boolean> map) {
     Map<String, Object> result = new LinkedHashMap<>();
     for (Map.Entry<String, Boolean> pair : map.entrySet()) {
       result.put(pair.getKey(), pair.getValue());
@@ -184,7 +191,7 @@ public class TableDisplayToJson {
     return value;
   }
 
-  static Map<Object, Object> serializeColumnsVisible(Map<String, Boolean> map) {
+  public Map<Object, Object> serializeColumnsVisible(Map<String, Boolean> map) {
     Map<String, Object> result = new LinkedHashMap<>();
     for (Map.Entry<String, Boolean> pair : map.entrySet()) {
       result.put(pair.getKey(), pair.getValue());
@@ -194,7 +201,7 @@ public class TableDisplayToJson {
     return value;
   }
 
-  static Map<Object, Object> serializeCellHighlighters(List<TableDisplayCellHighlighter> list) {
+  public Map<Object, Object> serializeCellHighlighters(List<TableDisplayCellHighlighter> list) {
     List result = new ArrayList();
     for (TableDisplayCellHighlighter item : list) {
       result.add(toJson(item));
@@ -204,7 +211,7 @@ public class TableDisplayToJson {
     return value;
   }
 
-  static Map<Object, Object> serializeColumnOrder(List<String> list) {
+  public Map<Object, Object> serializeColumnOrder(List<String> list) {
     List result = new ArrayList();
     for (String item : list) {
       result.add(item);
@@ -214,25 +221,25 @@ public class TableDisplayToJson {
     return value;
   }
 
-  static Map<Object, Object> serializeTooltips(List<List<String>> list) {
+  public Map<Object, Object> serializeTooltips(List<List<String>> list) {
     Map<Object, Object> value = new LinkedHashMap<>();
     value.put(TOOLTIPS, toJsonList(list));
     return value;
   }
 
-  static Map<Object, Object> serializeDataFontSize(Integer dataFontSize) {
+  public Map<Object, Object> serializeDataFontSize(Integer dataFontSize) {
     Map<Object, Object> value = new LinkedHashMap<>();
     value.put(DATA_FONT_SIZE, dataFontSize);
     return value;
   }
 
-  static Map<Object, Object> serializeHeaderFontSize(Integer headerFontSize) {
+  public Map<Object, Object> serializeHeaderFontSize(Integer headerFontSize) {
     Map<Object, Object> value = new LinkedHashMap<>();
     value.put(HEADER_FONT_SIZE, headerFontSize);
     return value;
   }
 
-  static Map<Object, Object> serializeFontColor(List<List<Color>> list) {
+  public Map<Object, Object> serializeFontColor(List<List<Color>> list) {
     List<List<String>> result = new ArrayList<>();
     list.forEach(item -> {
       List<String> elements = new ArrayList<>();
@@ -244,7 +251,7 @@ public class TableDisplayToJson {
     return value;
   }
 
-  static Map<Object, Object> serializeFilteredValues(List<List<?>> list) {
+  public Map<Object, Object> serializeFilteredValues(List<List<?>> list) {
     List<List<String>> result = new ArrayList<>();
     list.forEach(item -> {
       List<String> elements = new ArrayList<>();
@@ -256,44 +263,44 @@ public class TableDisplayToJson {
     return value;
   }
 
-  static Map<Object, Object> serializeHeadersVertical(boolean headersVertical) {
+  public Map<Object, Object> serializeHeadersVertical(boolean headersVertical) {
     Map<Object, Object> value = new LinkedHashMap<>();
     value.put(HEADERS_VERTICAL, headersVertical);
     return value;
   }
 
-  static Map<Object, Object> serializeRowsToShow(RowsToShow rowsToShow) {
+  public Map<Object, Object> serializeRowsToShow(RowsToShow rowsToShow) {
     Map<Object, Object> value = new LinkedHashMap<>();
     value.put(ROWS_TO_SHOW, rowsToShow.getRows());
     return value;
   }
 
-  static Map<Object, Object> serializeHasIndex(String hasIndex) {
+  public Map<Object, Object> serializeHasIndex(String hasIndex) {
     Map<Object, Object> value = new LinkedHashMap<>();
     value.put(HAS_INDEX, hasIndex);
     return value;
   }
 
-  static Map<Object, Object> serializeTimeZone(String timeZone) {
+  public Map<Object, Object> serializeTimeZone(String timeZone) {
     Map<Object, Object> value = new LinkedHashMap<>();
     value.put(TIME_ZONE, timeZone);
     return value;
   }
 
-  static Map<Object, Object> serializeDoubleClickAction(String doubleClickTag, boolean hasDoubleClickAction) {
+  public Map<Object, Object> serializeDoubleClickAction(String doubleClickTag, boolean hasDoubleClickAction) {
     Map<Object, Object> value = new LinkedHashMap<>();
     value.put(HAS_DOUBLE_CLICK_ACTION, hasDoubleClickAction);
     value.put(DOUBLE_CLICK_TAG, doubleClickTag);
     return value;
   }
 
-  static Map<Object, Object> serializeValues(List list) {
+  public Map<Object, Object> serializeValues(List list) {
     Map<Object, Object> result = new LinkedHashMap<>();
     result.put(VALUES, list);
     return result;
   }
 
-  static Map<Object, Object> serializeValuesWithFonts(List values,Map<Object, Object>  fonts) {
+  public Map<Object, Object> serializeValuesWithFonts(List values, Map<Object, Object> fonts) {
     Map<Object, Object> result = new LinkedHashMap<>();
     result.put(VALUES, values);
     result.putAll(fonts);

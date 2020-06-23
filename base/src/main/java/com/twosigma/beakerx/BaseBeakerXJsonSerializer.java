@@ -33,7 +33,7 @@ public abstract class BaseBeakerXJsonSerializer implements BeakerXJsonSerializer
   public BaseBeakerXJsonSerializer() {
     this.objectMapper = new ObjectMapper();
     this.objectMapper.enable(WRITE_ENUMS_USING_TO_STRING);
-    this.objectMapper.registerModule(TableDisplayToJson.tableDisplayModule());
+    this.objectMapper.registerModule(new TableDisplayToJson().tableDisplayModule());
     this.serializer = createSerializer();
   }
 

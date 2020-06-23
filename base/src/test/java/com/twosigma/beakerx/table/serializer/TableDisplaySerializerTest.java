@@ -385,7 +385,7 @@ public class TableDisplaySerializerTest {
   }
 
   private Map serializeTableDisplay() throws IOException {
-    return TableDisplayToJson.toJson(tableDisplay);
+    return new TableDisplayToJson().toJson(tableDisplay);
   }
 
   private class EmptyClosureTest extends ClosureTest {
