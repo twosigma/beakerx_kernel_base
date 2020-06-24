@@ -23,8 +23,15 @@ import com.twosigma.beakerx.table.TableDisplayLoadingMode;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public class TableDisplaySerializer extends ObservableTableDisplaySerializer<TableDisplay> {
+
+  private TableSettings settings;
+
+  public TableDisplaySerializer(TableSettings settings) {
+    this.settings = settings;
+  }
 
   public static final String ALIGNMENT_FOR_COLUMN = "alignmentForColumn";
   public static final String ALIGNMENT_FOR_TYPE = "alignmentForType";
@@ -49,6 +56,8 @@ public class TableDisplaySerializer extends ObservableTableDisplaySerializer<Tab
   public static final String TOOLTIPS = "tooltips";
   public static final String LOADING_MODE = "loadingMode";
   public static final String ROWS_TO_SHOW = "rowsToShow";
+  public static final String AUTO_LINK_TABLE_LINKS = "auto_link_table_links";
+  public static final String SHOW_PUBLICATION = "show_publication";
 
 
   @Override
@@ -87,6 +96,11 @@ public class TableDisplaySerializer extends ObservableTableDisplaySerializer<Tab
       jgen.writeObjectField(HAS_INDEX, tableDisplay.getHasIndex());
       jgen.writeObjectField(TIME_ZONE, tableDisplay.getTimeZone());
       jgen.writeObjectField(LOADING_MODE, TableDisplay.getLoadingMode());
+
+      Map<String, Object> options = settings.options();
+      for (String k : options.keySet()) {
+        jgen.writeObjectField(k, options.get(k));
+      }
       if (TableDisplay.getLoadingMode().equals(TableDisplayLoadingMode.ALL)) {
         loadingAllMode(tableDisplay, jgen, tableDisplay.takeAllData());
       } else {
