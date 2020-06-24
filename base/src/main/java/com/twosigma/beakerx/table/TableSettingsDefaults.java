@@ -13,14 +13,10 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.twosigma.beakerx.table.serializer;
+package com.twosigma.beakerx.table;
 
 import java.util.Map;
 
-public interface TableSettings {
-
-  Map<String, Object> options();
-
-  void save(Map<String, Map> map);
-
+public interface TableSettingsDefaults {
+  Map<String, Map> getDefault();
 }

@@ -23,6 +23,7 @@ import com.twosigma.beakerx.table.TableDisplayLoadingMode;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public class TableDisplaySerializer extends ObservableTableDisplaySerializer<TableDisplay> {
 
@@ -96,9 +97,10 @@ public class TableDisplaySerializer extends ObservableTableDisplaySerializer<Tab
       jgen.writeObjectField(TIME_ZONE, tableDisplay.getTimeZone());
       jgen.writeObjectField(LOADING_MODE, TableDisplay.getLoadingMode());
 
-      jgen.writeObjectField(AUTO_LINK_TABLE_LINKS, settings.get(AUTO_LINK_TABLE_LINKS));
-      jgen.writeObjectField(SHOW_PUBLICATION, settings.get(SHOW_PUBLICATION));
-
+      Map<String, Object> options = settings.options();
+      for (String k : options.keySet()) {
+        jgen.writeObjectField(k, options.get(k));
+      }
       if (TableDisplay.getLoadingMode().equals(TableDisplayLoadingMode.ALL)) {
         loadingAllMode(tableDisplay, jgen, tableDisplay.takeAllData());
       } else {

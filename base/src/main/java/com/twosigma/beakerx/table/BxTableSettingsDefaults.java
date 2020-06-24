@@ -13,14 +13,23 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.twosigma.beakerx.table.serializer;
+package com.twosigma.beakerx.table;
 
+import java.util.HashMap;
 import java.util.Map;
 
-public interface TableSettings {
+public class BxTableSettingsDefaults implements TableSettingsDefaults {
+  @Override
+  public Map<String, Map> getDefault() {
+    Map<String, Object> btd = new HashMap<>();
+    btd.put("version", 1);
+    HashMap<String, Object> options = new HashMap<>();
+    options.put("auto_link_table_links", false);
+    options.put("show_publication", true);
+    btd.put("options", options);
+    HashMap<String, Map> df = new HashMap<>();
+    df.put("beakerx_tabledisplay", btd);
+    return df;
 
-  Map<String, Object> options();
-
-  void save(Map<String, Map> map);
-
+  }
 }

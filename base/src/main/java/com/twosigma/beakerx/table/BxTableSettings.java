@@ -24,35 +24,36 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class BxTableSettings implements TableSettings {
 
   private String path;
+  private TableSettingsDefaults defaults;
   private ObjectMapper objectMapper;
 
   public BxTableSettings() {
-    this(getFile("beakerx_tabledisplay.json"));
+    this(getFile("beakerx_tabledisplay.json"), new BxTableSettingsDefaults());
   }
 
-  public BxTableSettings(String path) {
+  public BxTableSettings(String path, TableSettingsDefaults defaults) {
     this.path = path;
+    this.defaults = defaults;
     this.objectMapper = new ObjectMapper();
     this.objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
   }
 
   @Override
-  public Object get(String optionName) {
+  public Map<String, Object> options() {
     Map<String, Map> load = load();
     Map options;
     try {
       options = (Map) load.get("beakerx_tabledisplay").get("options");
     } catch (Exception e) {
-      options = getDefault();
+      options = (Map)defaults.getDefault().get("beakerx_tabledisplay").get("options");
     }
-    return options.get(optionName);
+    return options;
   }
 
   @SuppressWarnings("unchecked")
@@ -60,24 +61,23 @@ public class BxTableSettings implements TableSettings {
     String jsonAsString = null;
     try {
       jsonAsString = Files.readString(Paths.get(this.path));
+      LinkedHashMap linkedHashMap = fromJson(jsonAsString, LinkedHashMap.class);
+      Map merge = mergeSettingsWithDefaults(linkedHashMap);
+      return merge;
     } catch (Exception e) {
-      Map<String, Map> defaultConfig = getDefault();
+      Map<String, Map> defaultConfig = defaults.getDefault();
       save(defaultConfig);
       jsonAsString = toJson(defaultConfig);
+      return fromJson(jsonAsString, LinkedHashMap.class);
     }
-    return fromJson(jsonAsString, LinkedHashMap.class);
   }
 
-  private Map<String, Map> getDefault() {
-    HashMap<String, Object> btd = new HashMap<>();
-    btd.put("version", 1);
-    HashMap<String, Object> options = new HashMap<>();
-    options.put("auto_link_table_links", false);
-    options.put("show_publication", true);
-    btd.put("options", options);
-    HashMap<String, Map> df = new HashMap<>();
-    df.put("beakerx_tabledisplay", btd);
-    return df;
+  private Map mergeSettingsWithDefaults(Map<String, Map> current) {
+    Map options = (Map) current.get("beakerx_tabledisplay").get("options");
+    Map<String, Map> merge = defaults.getDefault();
+    Map optionsFromDefault = (Map) merge.get("beakerx_tabledisplay").get("options");
+    optionsFromDefault.putAll(options);
+    return merge;
   }
 
   private <T> T fromJson(String json, Class<T> theClass) {
