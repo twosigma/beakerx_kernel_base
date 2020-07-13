@@ -72,7 +72,8 @@ public class EvaluatorTest extends BaseEvaluator {
             kernelParameters,
             beakerXClient,
             new MagicCommandAutocompletePatternsMock(),
-            new ClasspathScannerMock());
+            new ClasspathScannerMock(),
+            new BxInspectMock());
   }
 
   @Override

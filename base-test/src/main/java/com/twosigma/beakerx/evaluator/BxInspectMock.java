@@ -1,5 +1,5 @@
 /*
- *  Copyright 2017 TWO SIGMA OPEN SOURCE, LLC
+ *  Copyright 2020 TWO SIGMA OPEN SOURCE, LLC
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -13,17 +13,20 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+package com.twosigma.beakerx.evaluator;
 
-package com.twosigma.beakerx.inspect;
-
+import com.twosigma.beakerx.inspect.Inspect;
+import com.twosigma.beakerx.inspect.InspectResult;
 import com.twosigma.beakerx.kernel.Imports;
 
 import java.net.URLClassLoader;
 
+public class BxInspectMock implements Inspect {
 
-public interface Inspect {
 
-  InspectResult doInspect(String code, int caretPosition, URLClassLoader classLoader, Imports imports);
 
+  @Override
+  public InspectResult doInspect(String code, int caretPosition, URLClassLoader classLoader, Imports imports) {
+    return new InspectResult();
+  }
 }
-
