@@ -36,6 +36,7 @@ import com.twosigma.beakerx.kernel.PathToJar;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
+import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -78,7 +79,8 @@ public abstract class BaseEvaluator implements Evaluator {
                        EvaluatorParameters evaluatorParameters,
                        BeakerXClient beakerXClient,
                        MagicCommandAutocompletePatterns autocompletePatterns,
-                       ClasspathScanner classpathScanner) {
+                       ClasspathScanner classpathScanner,
+                       Inspect inspect) {
     shellId = id;
     sessionId = sId;
     executor = cellExecutor;
@@ -89,7 +91,7 @@ public abstract class BaseEvaluator implements Evaluator {
     outDir = getOrCreateFile(tempFolder.toString() + File.separator + "outDir").getPath();
     classPath = new Classpath();
     classPath.add(new PathToJar(outDir));
-    inspect = new Inspect(Paths.get("."));
+    this.inspect = inspect;
     executorService = Executors.newCachedThreadPool();
     executorBgkService = Executors.newCachedThreadPool();
     this.evaluatorParameters = evaluatorParameters;
@@ -266,7 +268,6 @@ public abstract class BaseEvaluator implements Evaluator {
   @Override
   public void resetEnvironment() {
     executor.killAllThreads();
-    inspect = new Inspect(Paths.get("./"));
     doResetEnvironment();
   }
 

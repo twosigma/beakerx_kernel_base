@@ -19,11 +19,11 @@ package com.twosigma.beakerx.inspect;
 import java.util.List;
 
 public class ClassInspect {
-    String className;
-    String fullName;
-    String javadoc;
-    List<MethodInspect> methods;
-    List<MethodInspect> constructors;
+    private String className;
+    private String fullName;
+    private String javadoc;
+    private List<MethodInspect> methods;
+    private List<MethodInspect> constructors;
 
     public ClassInspect(String className, String fullName, String javadoc) {
         this.className = className;
