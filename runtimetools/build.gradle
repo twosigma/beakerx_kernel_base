@@ -13,16 +13,20 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-include 'doclet'
-include 'base-api'
-include 'base-test'
-include 'base'
-include 'runtimetools'
-
-// uncomment when demo projects have to be rebuild
-//include 'demoProjects'
-//include 'demoProjects:loadMagicJarDemo'
-//include 'demoProjects:demo'
-//include 'demoProjects:BeakerXClasspathTest'
 
 
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId 'com.twosigma'
+            artifactId 'beakerx-runtimetools'
+            version "$beakerxVersion"
+            from components.java
+        }
+    }
+}
