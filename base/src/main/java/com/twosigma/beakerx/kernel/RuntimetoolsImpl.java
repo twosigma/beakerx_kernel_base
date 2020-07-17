@@ -18,18 +18,30 @@ package com.twosigma.beakerx.kernel;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Optional;
+
+import static java.util.Arrays.asList;
 
 public class RuntimetoolsImpl implements Runtimetools {
 
- public void configRuntimeJars(KernelFunctionality kernel) {
-//    kernel.addJarsToClasspath(Arrays.asList(new PathToJar(getJar("runtimetools"))));
-//    kernel.addImport(new ImportPath("com.twosigma.beakerx.BxDriverManager"));
+  public void configRuntimeJars(KernelFunctionality kernel) {
+    Optional<String> runtimetools = getJar("runtimetools");
+    if (runtimetools.isPresent()) {
+      kernel.addJarsToClasspath(asList(new PathToJar(runtimetools.get())));
+      kernel.addImport(new ImportPath("com.twosigma.beakerx.BxDriverManager"));
+    }
   }
 
-  private String getJar(String name) {
+  private Optional<String> getJar(String name) {
     try {
       Path path = Paths.get(KernelFunctionality.class.getProtectionDomain().getCodeSource().getLocation().toURI());
-      return path.getParent().getParent().getParent().resolve(name).resolve("lib").resolve(name + ".jar").toString();
+      Path location = path.getParent().getParent().getParent().resolve("kernel").resolve("ext");
+      if (location.toFile().exists()) {
+        Optional<String> jarFile = Arrays.stream(location.toFile().list()).filter(jar -> jar.contains(name)).findFirst();
+        return jarFile.map(s -> location.resolve(s).toString());
+      } else {
+        return Optional.empty();
+      }
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
