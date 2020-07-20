@@ -19,8 +19,8 @@ public class HTMLPre extends StringWidget {
 
   public static final String VIEW_NAME_VALUE = "HTMLPreView";
   public static final String MODEL_NAME_VALUE = "HTMLPreModel";
-  public static final String MODEL_MODULE_VALUE = "beakerx";
-  public static final String VIEW_MODULE_VALUE = "beakerx";
+  public static final String MODEL_MODULE_VALUE = "beakerx_widgets";
+  public static final String VIEW_MODULE_VALUE = "beakerx_widgets";
 
   public HTMLPre() {
     super();
