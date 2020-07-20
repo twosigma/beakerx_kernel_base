@@ -20,8 +20,8 @@ public class Password extends StringWidget {
 
     public static final String VIEW_NAME_VALUE = "PasswordView";
     public static final String MODEL_NAME_VALUE = "PasswordModel";
-    public static final String MODEL_MODULE_VALUE = "beakerx";
-    public static final String VIEW_MODULE_VALUE = "beakerx";
+    public static final String MODEL_MODULE_VALUE = "beakerx_widgets";
+    public static final String VIEW_MODULE_VALUE = "beakerx_widgets";
 
     public Password() {
         super();
