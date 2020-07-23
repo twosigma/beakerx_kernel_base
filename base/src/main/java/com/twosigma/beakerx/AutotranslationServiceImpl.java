@@ -31,7 +31,7 @@ public class AutotranslationServiceImpl implements AutotranslationService {
 
   public static final String AUTHORIZATION = "Authorization";
   public static final String LOCALHOST = "http://localhost:";
-  public static final String AUTOTRANSLTION = "/autotransltion/";
+  public static final String AUTOTRANSLTION = "/autotranslation/";
   private final String contextAsString;
   private final AutotranslationContext context;
 
