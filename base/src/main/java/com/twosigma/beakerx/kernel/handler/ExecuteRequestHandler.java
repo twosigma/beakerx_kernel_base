@@ -121,13 +121,19 @@ public class ExecuteRequestHandler extends KernelHandler<Message> {
   }
 
   public void interruptKernel() {
-    try {
-      current.get();
-    } catch (Exception e) {
-      throw new RuntimeException(e);
-    }
+    waitForTheEndOfTheCurrentCell();
     List<Runnable> cells = executorService.shutdownNow();
     cells.forEach(Runnable::run);
     executorService = Executors.newFixedThreadPool(1);
+  }
+
+  private void waitForTheEndOfTheCurrentCell() {
+    if (current != null) {
+      try {
+        current.get();
+      } catch (Exception e) {
+        throw new RuntimeException(e);
+      }
+    }
   }
 }
