@@ -59,7 +59,11 @@ public interface KernelFunctionality {
 
   void cancelExecution(GroupName groupName);
 
-  void killAllThreads();
+  void interruptKernel();
+
+  void interruptKernelDone();
+
+  boolean isInterrupting();
 
   Handler<Message> getHandler(JupyterMessages type);
 
@@ -120,4 +124,5 @@ public interface KernelFunctionality {
   void startEvaluation();
 
   void endEvaluation();
+
 }

@@ -296,8 +296,18 @@ public class KernelTest implements KernelFunctionality {
   }
 
   @Override
-  public void killAllThreads() {
+  public void interruptKernel() {
 
+  }
+
+  @Override
+  public void interruptKernelDone() {
+
+  }
+
+  @Override
+  public boolean isInterrupting() {
+    return false;
   }
 
   @Override
@@ -524,14 +534,6 @@ public class KernelTest implements KernelFunctionality {
       return objectList;
     }
   }
-
-//  public static EvaluationObject createSeo(String code) {
-//    return new SimpleEvaluationObject(code, new SeoConfigurationFactoryMock());
-//  }
-//
-//  public static EvaluationObject createSeo(String code, Message message) {
-//    return new SimpleEvaluationObject(code, new SeoConfigurationFactoryMock(message));
-//  }
 
 }
 

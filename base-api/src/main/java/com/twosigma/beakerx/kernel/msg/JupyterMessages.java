@@ -51,7 +51,9 @@ public enum JupyterMessages {
   ERROR,
   IS_COMPLETE_REQUEST,
   INPUT_REQUEST,
-  IS_COMPLETE_REPLY;
+  IS_COMPLETE_REPLY,
+  INTERRUPT_REQUEST,
+  INTERRUPT_REPLY;
   
   public String getName() {
     return this.name().toLowerCase();

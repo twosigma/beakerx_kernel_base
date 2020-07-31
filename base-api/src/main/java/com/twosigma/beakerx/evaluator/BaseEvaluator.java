@@ -36,7 +36,6 @@ import com.twosigma.beakerx.kernel.PathToJar;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
-import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -52,7 +51,9 @@ import java.util.concurrent.Future;
 
 public abstract class BaseEvaluator implements Evaluator {
 
-  public static String INTERUPTED_MSG = "interrupted";
+  public static String INTERUPTED_MSG = "KeyboardInterrupt";
+
+  private boolean interrupting = false;
   protected final String shellId;
   protected final String sessionId;
   private final ClasspathScanner classpathScanner;
@@ -107,6 +108,29 @@ public abstract class BaseEvaluator implements Evaluator {
   @Override
   public void endEvaluation() {
     classLoaderSwitcher.end();
+  }
+
+  @Override
+  public void interruptKernel() {
+    interrupting = true;
+    killAllThreads();
+  }
+
+  @Override
+  public void interruptKernelDone() {
+    interrupting = false;
+  }
+
+  public boolean isInterrupting() {
+    return interrupting;
+  }
+
+  @Override
+  public TryResult processResult(TryResult result) {
+    if (interrupting) {
+      return TryResult.createError(INTERUPTED_MSG);
+    }
+    return result;
   }
 
   CompletableFuture<TryResult> background;
