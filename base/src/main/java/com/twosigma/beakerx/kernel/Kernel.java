@@ -20,6 +20,7 @@ import com.twosigma.beakerx.CommRepository;
 import com.twosigma.beakerx.DisplayerDataMapper;
 import com.twosigma.beakerx.TryResult;
 import com.twosigma.beakerx.autocomplete.AutocompleteResult;
+import com.twosigma.beakerx.evaluator.BaseEvaluator;
 import com.twosigma.beakerx.evaluator.Evaluator;
 import com.twosigma.beakerx.evaluator.Hook;
 import com.twosigma.beakerx.handler.Handler;
@@ -28,6 +29,7 @@ import com.twosigma.beakerx.inspect.InspectResult;
 import com.twosigma.beakerx.jvm.object.EvaluationObject;
 import com.twosigma.beakerx.kernel.comm.Comm;
 import com.twosigma.beakerx.kernel.handler.CommOpenHandler;
+import com.twosigma.beakerx.kernel.handler.ExecuteRequestHandler;
 import com.twosigma.beakerx.kernel.magic.command.MagicCommandConfiguration;
 import com.twosigma.beakerx.kernel.magic.command.MagicCommandType;
 import com.twosigma.beakerx.kernel.msg.JupyterMessages;
@@ -159,8 +161,20 @@ public abstract class Kernel implements KernelFunctionality {
   }
 
   @Override
-  public void killAllThreads() {
-    evaluator.killAllThreads();
+  public void interruptKernel() {
+    evaluator.interruptKernel();
+    ExecuteRequestHandler executeRequestHandler = handlers.getExecuteRequestHandler();
+    executeRequestHandler.interruptKernel();
+  }
+
+  @Override
+  public void interruptKernelDone() {
+    evaluator.interruptKernelDone();
+  }
+
+  @Override
+  public boolean isInterrupting() {
+    return evaluator.isInterrupting();
   }
 
   @Override

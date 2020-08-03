@@ -21,6 +21,7 @@ import com.twosigma.beakerx.kernel.handler.CommInfoHandler;
 import com.twosigma.beakerx.kernel.handler.CommMsgHandler;
 import com.twosigma.beakerx.kernel.handler.CommOpenHandler;
 import com.twosigma.beakerx.kernel.handler.ExecuteRequestHandler;
+import com.twosigma.beakerx.kernel.handler.InterruptMsgHandler;
 import com.twosigma.beakerx.kernel.msg.JupyterMessages;
 import com.twosigma.beakerx.handler.IsCompleteRequestHandler;
 import com.twosigma.beakerx.handler.KernelHandler;
@@ -60,6 +61,7 @@ public class KernelHandlers {
     handlers.put(JupyterMessages.COMM_CLOSE, new CommCloseHandler(kernel));
     handlers.put(JupyterMessages.COMM_MSG, new CommMsgHandler(kernel));
     handlers.put(JupyterMessages.IS_COMPLETE_REQUEST, new IsCompleteRequestHandler(kernel));
+    handlers.put(JupyterMessages.INTERRUPT_REQUEST, new InterruptMsgHandler(kernel));
     return handlers;
   }
 

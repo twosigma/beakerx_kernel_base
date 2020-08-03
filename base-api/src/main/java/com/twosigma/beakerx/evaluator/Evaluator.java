@@ -85,4 +85,12 @@ public interface Evaluator {
   void startEvaluation();
 
   void endEvaluation();
+
+  void interruptKernel();
+
+  void interruptKernelDone();
+
+  boolean isInterrupting();
+
+  TryResult processResult(TryResult result);
 }

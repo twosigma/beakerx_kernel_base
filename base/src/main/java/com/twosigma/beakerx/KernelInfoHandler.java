@@ -15,29 +15,26 @@
  */
 package com.twosigma.beakerx;
 
-import static com.twosigma.beakerx.kernel.msg.JupyterMessages.KERNEL_INFO_REPLY;
-import static com.twosigma.beakerx.handler.KernelHandlerWrapper.wrapBusyIdle;
-import static java.util.Arrays.asList;
-
-import com.twosigma.beakerx.kernel.KernelFunctionality;
 import com.twosigma.beakerx.handler.KernelHandler;
-import com.twosigma.beakerx.kernel.KernelManager;
+import com.twosigma.beakerx.kernel.KernelFunctionality;
 import com.twosigma.beakerx.message.Header;
 import com.twosigma.beakerx.message.Message;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static com.twosigma.beakerx.handler.KernelHandlerWrapper.wrapBusyIdle;
+import static com.twosigma.beakerx.kernel.msg.JupyterMessages.KERNEL_INFO_REPLY;
+import static java.util.Arrays.asList;
 
 public abstract class KernelInfoHandler extends KernelHandler<Message> {
 
   private final static Logger logger = LoggerFactory.getLogger(KernelInfoHandler.class);
   public static final String PROTOCOL_VERSION = "protocol_version";
   public static final String PROTOCOL_VERSION_NUMBER = "5.3";
-  public static final String INTERRUPT_KERNEL = "interrupt_kernel";
 
   public KernelInfoHandler(KernelFunctionality kernel) {
     super(kernel);
@@ -49,12 +46,12 @@ public abstract class KernelInfoHandler extends KernelHandler<Message> {
   }
 
   private void handleMsg(Message message) {
-    logger.debug("Processing kernel info request");
-    Message reply = new Message(new Header(KERNEL_INFO_REPLY, message.getHeader().getSession()));
-    reply.setContent(content());
-    reply.setParentHeader(message.getHeader());
-    reply.setIdentities(message.getIdentities());
-    send(reply);
+      logger.debug("Processing kernel info request");
+      Message reply = new Message(new Header(KERNEL_INFO_REPLY, message.getHeader().getSession()));
+      reply.setContent(content());
+      reply.setParentHeader(message.getHeader());
+      reply.setIdentities(message.getIdentities());
+      send(reply);
   }
 
   private HashMap<String, Serializable> languageInfo() {
@@ -70,7 +67,6 @@ public abstract class KernelInfoHandler extends KernelHandler<Message> {
     map.put("help_links", getHelpLinks());
     map.put("beakerx", true);
     map.put("status", "ok");
-    map.put("url_to_interrupt", KernelManager.get().getBeakerXServer().getURL() + INTERRUPT_KERNEL);
     return doContent(map);
   }
 

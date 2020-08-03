@@ -74,17 +74,16 @@ public class KernelSocketsZMQ extends KernelSockets {
   private void configureSockets(Config configuration) {
     final String connection = configuration.getTransport() + "://" + configuration.getHost();
 
-    hearbeatSocket = getNewSocket(ZMQ.REP, configuration.getHeartbeat(), connection, context);
     iopubSocket = getNewSocket(ZMQ.PUB, configuration.getIopub(), connection, context);
+    hearbeatSocket = getNewSocket(ZMQ.ROUTER, configuration.getHeartbeat(), connection, context);
     controlSocket = getNewSocket(ZMQ.ROUTER, configuration.getControl(), connection, context);
     stdinSocket = getNewSocket(ZMQ.ROUTER, configuration.getStdin(), connection, context);
     shellSocket = getNewSocket(ZMQ.ROUTER, configuration.getShell(), connection, context);
 
-    sockets = new ZMQ.Poller(4);
-    sockets.register(controlSocket, ZMQ.Poller.POLLIN);
+    sockets = new ZMQ.Poller(3);
     sockets.register(hearbeatSocket, ZMQ.Poller.POLLIN);
     sockets.register(shellSocket, ZMQ.Poller.POLLIN);
-    sockets.register(stdinSocket, ZMQ.Poller.POLLIN);
+    sockets.register(controlSocket, ZMQ.Poller.POLLIN);
   }
 
   public void publish(List<Message> message) {
@@ -168,10 +167,8 @@ public class KernelSocketsZMQ extends KernelSockets {
           handleHeartbeat();
         } else if (isShellMsg()) {
           handleShell();
-        } else if (isStdinMsg()) {
-          handleStdIn();
-        } else if (this.isShutdown()) {
-          break;
+        } else {
+          logger.error("not handled message from sockets");
         }
       }
     } catch (Exception e) {
@@ -210,6 +207,10 @@ public class KernelSocketsZMQ extends KernelSockets {
       reply.setContent(message.getContent());
       sendMsg(controlSocket, Collections.singletonList(reply));
       shutdown();
+    }
+    Handler<Message> handler = kernel.getHandler(message.type());
+    if (handler != null) {
+      handler.handle(message);
     }
   }
 
@@ -262,20 +263,16 @@ public class KernelSocketsZMQ extends KernelSockets {
     return delim;
   }
 
-  private boolean isStdinMsg() {
-    return sockets.pollin(3);
+  private boolean isHeartbeatMsg() {
+    return sockets.pollin(0);
   }
 
   private boolean isShellMsg() {
-    return sockets.pollin(2);
-  }
-
-  private boolean isHeartbeatMsg() {
     return sockets.pollin(1);
   }
 
   private boolean isControlMsg() {
-    return sockets.pollin(0);
+    return sockets.pollin(2);
   }
 
   private void shutdown() {

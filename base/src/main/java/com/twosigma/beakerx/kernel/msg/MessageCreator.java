@@ -133,7 +133,13 @@ public class MessageCreator implements MessageCreatorService {
     }
     return reply;
   }
-
+  public static Message buildAbortedReply(Message message) {
+    Message abortedReply = initMessage(EXECUTE_REPLY, message);
+    Hashtable<String, Serializable> content = new Hashtable<String, Serializable>(1);
+    content.put("status", "aborted");
+    abortedReply.setContent(content);
+    return abortedReply;
+  }
   public static Message buildReplyWithoutStatus(Message message, int executionCount) {
     Message reply = initMessage(EXECUTE_REPLY, message);
     Hashtable<String, Serializable> map6 = new Hashtable<String, Serializable>(3);

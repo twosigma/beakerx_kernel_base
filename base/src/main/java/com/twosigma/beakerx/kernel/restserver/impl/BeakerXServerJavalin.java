@@ -26,7 +26,6 @@ import org.jetbrains.annotations.NotNull;
 
 import static com.twosigma.beakerx.BeakerXClient.CODE_CELL_PATH;
 import static com.twosigma.beakerx.BeakerXClient.URL_ARG;
-import static com.twosigma.beakerx.KernelInfoHandler.INTERRUPT_KERNEL;
 import static com.twosigma.beakerx.kernel.comm.GetCodeCellsHandler.INSTANCE;
 import static com.twosigma.beakerx.kernel.magic.command.functionality.AsyncMagicCommand.CANCEL_EXECUTION;
 
@@ -72,9 +71,6 @@ public abstract class BeakerXServerJavalin implements BeakerXServer {
     server.post(CODE_CELL_PATH, ctx -> {
       String body = ctx.body();
       INSTANCE.handle(body);
-    });
-    server.post(INTERRUPT_KERNEL, ctx -> {
-      kernel.killAllThreads();
     });
     server.post(CANCEL_EXECUTION+"/:groupname", ctx -> {
       kernel.cancelExecution(GroupName.of(ctx.param("groupname")));

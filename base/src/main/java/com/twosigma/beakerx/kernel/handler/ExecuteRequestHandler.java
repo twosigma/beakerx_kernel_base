@@ -27,7 +27,11 @@ import com.twosigma.beakerx.message.Message;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.FutureTask;
 
 import static com.twosigma.beakerx.kernel.msg.JupyterMessages.EXECUTE_INPUT;
 import static java.util.Collections.singletonList;
@@ -41,6 +45,7 @@ public class ExecuteRequestHandler extends KernelHandler<Message> {
 
   private final SimpleEvaluationObjectFactory seof;
   private int executionCount;
+  private ExecutorService executorService = Executors.newFixedThreadPool(1);
 
   public ExecuteRequestHandler(KernelFunctionality kernel) {
     super(kernel);
@@ -48,27 +53,43 @@ public class ExecuteRequestHandler extends KernelHandler<Message> {
     this.seof = new SimpleEvaluationObjectFactory();
   }
 
+  private FutureTask<String> current;
+
   @Override
   public void handle(Message message) {
     try {
-      handleMsg(message);
+      executorService.execute(() -> handleMsg(message));
     } catch (Exception e) {
       handleException(message, e);
     }
   }
 
+
   private void handleMsg(Message message) {
-    executionCount += 1;
-    kernel.sendBusyMessage(message);
-    String codeString = takeCodeFrom(message);
-    announceTheCode(message, codeString);
-    Code code = new CodeFactory(MessageCreator.get(), seof).create(codeString, message, kernel);
-    code.execute(kernel, executionCount);
-    finishExecution(message);
+    current = new FutureTask<>(() -> {
+      try {
+        runCode(message);
+      } catch (Exception e) {
+        handleException(message, e);
+      }
+      return "ok";
+    });
+    current.run();
   }
 
-  private void finishExecution(Message message) {
-    kernel.sendIdleMessage(message);
+  private void runCode(Message message) {
+    if (kernel.isInterrupting()) {
+      Message abortedReply = MessageCreator.buildAbortedReply(message);
+      kernel.send(abortedReply);
+    } else {
+      kernel.sendBusyMessage(message);
+      executionCount += 1;
+      String codeString = takeCodeFrom(message);
+      announceTheCode(message, codeString);
+      Code code = new CodeFactory(MessageCreator.get(), seof).create(codeString, message, kernel);
+      code.execute(kernel, executionCount);
+      kernel.sendIdleMessage(message);
+    }
   }
 
   private String takeCodeFrom(Message message) {
@@ -99,4 +120,20 @@ public class ExecuteRequestHandler extends KernelHandler<Message> {
   public void exit() {
   }
 
+  public void interruptKernel() {
+    waitForTheEndOfTheCurrentCell();
+    List<Runnable> cells = executorService.shutdownNow();
+    cells.forEach(Runnable::run);
+    executorService = Executors.newFixedThreadPool(1);
+  }
+
+  private void waitForTheEndOfTheCurrentCell() {
+    if (current != null) {
+      try {
+        current.get();
+      } catch (Exception e) {
+        throw new RuntimeException(e);
+      }
+    }
+  }
 }
