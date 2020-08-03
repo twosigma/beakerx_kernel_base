@@ -19,8 +19,8 @@ public class Checkbox extends BoolWidget {
 
   public static String VIEW_NAME_VALUE = "CheckboxView";
   public static String MODEL_NAME_VALUE = "CheckboxModel";
-  public static final String MODEL_MODULE_VALUE = "beakerx_widgets";
-  public static final String VIEW_MODULE_VALUE = "beakerx_widgets";
+  public static final String MODEL_MODULE_VALUE = "beakerx";
+  public static final String VIEW_MODULE_VALUE = "beakerx";
 
   public Checkbox() {
     super();
