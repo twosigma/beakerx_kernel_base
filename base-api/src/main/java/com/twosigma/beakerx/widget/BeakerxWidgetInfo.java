@@ -16,8 +16,8 @@
 package com.twosigma.beakerx.widget;
 
 public interface BeakerxWidgetInfo {
-  String MODEL_MODULE_VALUE = "beakerx_widgets";
-  String VIEW_MODULE_VALUE = "beakerx_widgets";
+  String MODEL_MODULE_VALUE = "beakerx";
+  String VIEW_MODULE_VALUE = "beakerx";
   String MODEL = "model";
   String MODEL_UPDATE = "updateData";
 }
