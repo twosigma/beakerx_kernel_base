@@ -30,6 +30,10 @@ public class ResourceLoaderTest {
 
   public static String getOsAppropriatePath(String fileName, Class clazz) throws Exception {
     URI uriToFile = clazz.getClassLoader().getResource(fileName).toURI();
+    return getOsAppropriatePath(uriToFile);
+  }
+
+  public static String getOsAppropriatePath(URI uriToFile) {
     return IS_WINDOWS
             ? uriToFile.getSchemeSpecificPart().substring(1)
             : uriToFile.getSchemeSpecificPart();

@@ -17,13 +17,13 @@
 package com.twosigma.beakerx.table;
 
 import com.twosigma.beakerx.KernelTestFactory;
+import com.twosigma.beakerx.ResourceLoaderTest;
 import com.twosigma.beakerx.kernel.KernelManager;
 import org.jetbrains.annotations.NotNull;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -49,7 +49,7 @@ public class TableDisplaySettingsTest {
   }
 
   @Test
-  public void options() throws IOException {
+  public void options() throws Exception {
     //given
     //when
     Map actualObj = serializeTableDisplay();
@@ -59,7 +59,7 @@ public class TableDisplaySettingsTest {
   }
 
   @Test
-  public void default_options() throws IOException {
+  public void default_options() throws Exception {
     //given
     //when
     try {
@@ -73,7 +73,7 @@ public class TableDisplaySettingsTest {
   }
 
   @Test
-  public void merge_with_new_default_options() throws IOException {
+  public void merge_with_new_default_options() throws Exception {
     //given
     try {
       Map actualObj = serializeTableDisplay();
@@ -90,24 +90,27 @@ public class TableDisplaySettingsTest {
     }
   }
 
-  private Map serializeTableDisplayWithNewDefaults() throws IOException {
-    String path = this.getClass().getClassLoader().getResource("beakerx_tabledisplay_mock.json").getPath();
-    return new TableDisplayToJson(new BxTableSettings(path, new BxTableSettingsDefaultsWithNewOption())).toJson(tableDisplay);
+  private Map serializeTableDisplayWithNewDefaults() throws Exception {
+    String osAppropriatePath =
+            ResourceLoaderTest.getOsAppropriatePath(this.getClass().getClassLoader().getResource("beakerx_tabledisplay_mock.json").toURI());
+    return new TableDisplayToJson(new BxTableSettings(osAppropriatePath, new BxTableSettingsDefaultsWithNewOption())).toJson(tableDisplay);
   }
 
-  private Map serializeTableDisplayWithNoSettings() throws IOException {
+  private Map serializeTableDisplayWithNoSettings() throws Exception {
     String path = fileNoExists();
     return new TableDisplayToJson(new BxTableSettings(path, new BxTableSettingsDefaults())).toJson(tableDisplay);
   }
 
   @NotNull
-  private String fileNoExists() {
-    return this.getClass().getClassLoader().getResource("").getPath() + "beakerx_tabledisplay_no_exist.json";
+  private String fileNoExists() throws Exception{
+    String osAppropriatePath = ResourceLoaderTest.getOsAppropriatePath(this.getClass().getClassLoader().getResource("").toURI());
+    return osAppropriatePath + "beakerx_tabledisplay_no_exist.json";
   }
 
-  private Map serializeTableDisplay() throws IOException {
-    String path = this.getClass().getClassLoader().getResource("beakerx_tabledisplay_mock.json").getPath();
-    return new TableDisplayToJson(new BxTableSettings(path, new BxTableSettingsDefaults())).toJson(tableDisplay);
+  private Map serializeTableDisplay() throws Exception {
+    String osAppropriatePath =
+            ResourceLoaderTest.getOsAppropriatePath(this.getClass().getClassLoader().getResource("beakerx_tabledisplay_mock.json").toURI());
+    return new TableDisplayToJson(new BxTableSettings(osAppropriatePath, new BxTableSettingsDefaults())).toJson(tableDisplay);
   }
 
   class BxTableSettingsDefaultsWithNewOption implements TableSettingsDefaults {
