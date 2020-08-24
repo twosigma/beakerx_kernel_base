@@ -19,8 +19,8 @@ import com.twosigma.beakerx.message.Message;
 
 public class BxHTML extends StringWidget {
 
-  public static final String VIEW_NAME_VALUE = "BxHTMLView";
-  public static final String MODEL_NAME_VALUE = "BxHTMLModel";
+  public static final String VIEW_NAME_VALUE = "HTMLView";
+  public static final String MODEL_NAME_VALUE = "HTMLModel";
 
   public BxHTML() {
     super();
