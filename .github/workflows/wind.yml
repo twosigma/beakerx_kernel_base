@@ -17,11 +17,13 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.11
-    - name: Set env vars
+    - name: Set Var
+      shell: bash -l {0}
       run: |
-         echo "::set-env name=TMP::$env:USERPROFILE\AppData\Local\Temp"
-         echo "::set-env name=TEMP::$env:USERPROFILE\AppData\Local\Temp"
+         echo "TMP=$USERPROFILE\\AppData\\Local\\Temp" >> $GITHUB_ENV
+         echo "TEMP=$USERPROFILE\\AppData\\Local\\Temp" >> $GITHUB_ENV"
     - name: Build BeakerX Kernel Base
+      shell: bash -l {0}
       run: 
         ./gradlew install
     
