@@ -21,7 +21,7 @@ jobs:
       shell: bash -l {0}
       run: |
          echo "TMP=$USERPROFILE\\AppData\\Local\\Temp" >> $GITHUB_ENV
-         echo "TEMP=$USERPROFILE\\AppData\\Local\\Temp" >> $GITHUB_ENV"
+         echo "TEMP=$USERPROFILE\\AppData\\Local\\Temp" >> $GITHUB_ENV
     - name: Build BeakerX Kernel Base
       shell: bash -l {0}
       run: 
