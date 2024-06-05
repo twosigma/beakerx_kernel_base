@@ -31,7 +31,7 @@ public class AutotranslationServiceImpl implements AutotranslationService {
 
   public static final String AUTHORIZATION = "Authorization";
   public static final String LOCALHOST = "http://localhost:";
-  public static final String AUTOTRANSLTION = "/autotranslation/";
+  public static final String AUTOTRANSLATION = "/autotranslation/";
   private final String contextAsString;
   private final AutotranslationContext context;
 
@@ -66,7 +66,7 @@ public class AutotranslationServiceImpl implements AutotranslationService {
     checkNotNull(name, "'name' attribute can not be null.");
     checkNotNull(json, "'json' attribute can not be null.");
     try {
-      String reply = Request.Post(LOCALHOST + this.context.getPort() + AUTOTRANSLTION)
+      String reply = Request.Post(LOCALHOST + this.context.getPort() + AUTOTRANSLATION)
               .addHeader(AUTHORIZATION, auth())
               .bodyString(createBody(name, json), ContentType.APPLICATION_JSON)
               .execute().returnContent().asString();
@@ -84,7 +84,7 @@ public class AutotranslationServiceImpl implements AutotranslationService {
     String valueString = "";
     try {
       valueString = Request
-              .Get(LOCALHOST + this.context.getPort() + AUTOTRANSLTION + this.context.getContextId() + "/" + name)
+              .Get(LOCALHOST + this.context.getPort() + AUTOTRANSLATION + this.context.getContextId() + "/" + name)
               .addHeader(AUTHORIZATION, auth())
               .execute()
               .returnContent()
