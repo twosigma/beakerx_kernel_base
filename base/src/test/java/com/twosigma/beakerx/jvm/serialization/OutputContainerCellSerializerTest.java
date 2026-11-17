@@ -23,10 +23,10 @@ import com.twosigma.beakerx.KernelTestFactory;
 import com.twosigma.beakerx.jvm.object.OutputContainerCell;
 import com.twosigma.beakerx.jvm.object.SimpleLayoutManager;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
@@ -35,20 +35,20 @@ public class OutputContainerCellSerializerTest {
   private static OutputContainerCellSerializer serializer;
   private static SerializationTestHelper<OutputContainerCellSerializer, OutputContainerCell> helper;
 
-  @BeforeClass
+  @BeforeAll
   public static void setUpClass() throws IOException {
     serializer = new OutputContainerCellSerializer(new BasicObjectSerializer());
     helper = new SerializationTestHelper<>(serializer);
   }
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     KernelManager.register(KernelTestFactory.getKernel());
     outputContainerCell = new OutputContainerCell() {
     };
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

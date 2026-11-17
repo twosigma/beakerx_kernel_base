@@ -23,9 +23,9 @@ import com.twosigma.beakerx.jvm.threads.BeakerOutputHandler;
 import com.twosigma.beakerx.kernel.magic.command.MagicCommandConfigurationMock;
 import com.twosigma.beakerx.kernel.msg.MessageCreator;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static com.twosigma.beakerx.jvm.object.EvaluationStatus.ERROR;
 import static com.twosigma.beakerx.jvm.object.EvaluationStatus.FINISHED;
@@ -38,7 +38,7 @@ public class SimpleEvaluationObjectTest {
   private KernelTest kernel;
   private KernelTest.ExecutionResultSenderMock senderMock;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     senderMock = new KernelTest.ExecutionResultSenderMock();
     kernel = new KernelTest(senderMock, MessageCreator.get(), new MagicCommandConfigurationMock());
@@ -46,7 +46,7 @@ public class SimpleEvaluationObjectTest {
     KernelManager.register(kernel);
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

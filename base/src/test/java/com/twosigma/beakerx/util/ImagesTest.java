@@ -15,14 +15,14 @@
  */
 package com.twosigma.beakerx.util;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
 import static com.twosigma.beakerx.fileloader.CSVTest.getOsAppropriatePath;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 /**
  * Tests {@link Images}.

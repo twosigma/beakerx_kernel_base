@@ -20,9 +20,9 @@ import com.twosigma.beakerx.jvm.object.Configuration;
 import com.twosigma.beakerx.jvm.object.EvaluationObject;
 import com.twosigma.beakerx.jvm.object.SimpleEvaluationObject;
 import com.twosigma.beakerx.kernel.threads.ResultSender;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static com.twosigma.beakerx.MessageFactorTest.commMsg;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,7 +33,7 @@ public class BeakerStdOutErrHandlerTest {
   private SimpleOutputHandlerMock stdout;
   private SimpleErrHandlerMock stderr;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     BeakerStdInOutErrHandler.init();
     stdout = new SimpleOutputHandlerMock();
@@ -42,7 +42,7 @@ public class BeakerStdOutErrHandlerTest {
     seo.setOutputHandler();
   }
 
-  @After
+  @AfterEach
   public void tearDownClass() throws Exception {
     seo.clrOutputHandler();
     BeakerStdInOutErrHandler.fini();

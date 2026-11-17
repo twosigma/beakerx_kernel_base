@@ -19,8 +19,8 @@ package com.twosigma.beakerx.jvm.serialization;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 
@@ -29,7 +29,7 @@ public class DateDeserializerTest {
   private String json;
   private long timestamp;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     timestamp = 1492423972082L;
     json = "{\"type\":\"Date\",\"timestamp\":"+ timestamp +"}";

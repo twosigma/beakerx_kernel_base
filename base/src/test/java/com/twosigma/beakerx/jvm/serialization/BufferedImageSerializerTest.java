@@ -20,10 +20,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.twosigma.beakerx.kernel.KernelManager;
 import com.twosigma.beakerx.KernelTestFactory;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -33,19 +33,19 @@ public class BufferedImageSerializerTest {
   private static BufferedImageSerializer serializer;
   private static SerializationTestHelper<BufferedImageSerializer, BufferedImage> helper;
 
-  @BeforeClass
+  @BeforeAll
   public static void setUpClass() throws IOException {
     serializer = new BufferedImageSerializer();
     helper = new SerializationTestHelper<>(serializer);
   }
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     KernelManager.register(KernelTestFactory.getKernel());
     bufferedImage = new BufferedImage(100, 200, BufferedImage.TYPE_INT_RGB);
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

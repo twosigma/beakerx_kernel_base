@@ -20,27 +20,27 @@ import com.twosigma.beakerx.KernelTest;
 import com.twosigma.beakerx.KernelTestFactory;
 import com.twosigma.beakerx.chart.xychart.Plot;
 import com.twosigma.beakerx.message.Message;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
 import static com.twosigma.beakerx.widget.BeakerxWidget.MODEL;
 import static com.twosigma.beakerx.widget.TestWidgetUtils.getValueForProperty;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TabbedOutputContainerLayoutManagerTest {
 
   private KernelTest kernel;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     kernel = KernelTestFactory.getKernel();
     KernelManager.register(kernel);
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }
@@ -56,7 +56,7 @@ public class TabbedOutputContainerLayoutManagerTest {
     outputContainer.display();
     //then
     Map model = getValueForProperty(plotUpdateMsg(), MODEL, Map.class);
-    assertTrue("Child model should be sent.", model != null);
+    assertTrue(model != null, "Child model should be sent.");
   }
 
   private Message plotUpdateMsg() {

@@ -22,9 +22,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.twosigma.beakerx.table.ObservableTableDisplayTest;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -40,13 +40,13 @@ public class BasicObjectSerializerTest {
   private static JsonGenerator jgen;
   private static ObjectMapper mapper;
 
-  @BeforeClass
+  @BeforeAll
   public static void setUpClass() throws Exception {
     mapper = new ObjectMapper();
     jgen = mapper.getFactory().createGenerator(new StringWriter());
   }
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     basicObjectSerializer = new BasicObjectSerializer();
     helper = new SerializationTestHelper<>(new TestSerializer());

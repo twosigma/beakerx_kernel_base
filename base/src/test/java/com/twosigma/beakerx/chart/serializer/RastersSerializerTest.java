@@ -23,9 +23,9 @@ import com.twosigma.beakerx.jvm.serialization.SerializationTestHelper;
 import java.util.Collections;
 import java.util.List;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -36,13 +36,13 @@ public class RastersSerializerTest {
   private static RastersSerializer serializer;
   private static SerializationTestHelper<RastersSerializer, Rasters> helper;
 
-  @BeforeClass
+  @BeforeAll
   public static void setUpClass() throws IOException {
     serializer = new RastersSerializer();
     helper = new SerializationTestHelper<>(serializer);
   }
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     rasters = new Rasters() {};
     List<Number> value = Collections.singletonList(1);

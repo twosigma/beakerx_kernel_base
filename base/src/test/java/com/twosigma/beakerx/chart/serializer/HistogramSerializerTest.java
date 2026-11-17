@@ -28,10 +28,10 @@ import com.twosigma.beakerx.KernelTest;
 import com.twosigma.beakerx.kernel.magic.command.MagicCommandConfigurationMock;
 import com.twosigma.beakerx.kernel.msg.MessageCreator;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -45,13 +45,13 @@ public class HistogramSerializerTest {
   StringWriter sw;
   Histogram histogram;
 
-  @BeforeClass
+  @BeforeAll
   public static void initClassStubData() {
     mapper = new ObjectMapper();
     histogramSerializer = new HistogramSerializer();
   }
 
-  @Before
+  @BeforeEach
   public void initTestStubData() throws IOException {
     KernelManager.register(new KernelTest(MessageCreator.get(), new MagicCommandConfigurationMock()));
     sw = new StringWriter();
@@ -59,7 +59,7 @@ public class HistogramSerializerTest {
     histogram = new Histogram();
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

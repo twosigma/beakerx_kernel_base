@@ -20,7 +20,7 @@ import com.twosigma.beakerx.chart.ChartTest;
 import com.twosigma.beakerx.chart.treemap.util.IToolTipBuilder;
 import net.sf.jtreemap.swing.DefaultValue;
 import net.sf.jtreemap.swing.TreeMapNode;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.LinkedHashMap;
 import java.util.stream.IntStream;

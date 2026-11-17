@@ -24,8 +24,8 @@ import com.twosigma.beakerx.kernel.msg.JupyterMessages;
 import com.twosigma.beakerx.kernel.msg.MessageCreator;
 import com.twosigma.beakerx.kernel.msg.MessageHolder;
 import com.twosigma.beakerx.widget.TestWidgetUtils;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import com.twosigma.beakerx.message.Message;
 
 import java.util.List;
@@ -41,7 +41,7 @@ public class MessageCreatorTest {
   private SimpleEvaluationObject seo;
   KernelTest kernel;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     kernel = KernelTestFactory.getKernel();
     seo = new SimpleEvaluationObject("code", new KernelTest.SeoConfigurationFactoryMock(kernel,commMsg(),MessageCreator.get(),new MagicCommandConfigurationMock()));

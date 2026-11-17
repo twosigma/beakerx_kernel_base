@@ -26,11 +26,11 @@ import com.twosigma.beakerx.kernel.msg.JupyterMessages;
 import com.twosigma.beakerx.kernel.msg.MessageCreator;
 import com.twosigma.beakerx.message.Header;
 import com.twosigma.beakerx.message.Message;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -53,7 +53,7 @@ public class ExecuteRequestHandlerTest {
   private Message message;
   private Message magicMessage;
 
-  @BeforeClass
+  @BeforeAll
   public static void setUpClass() {
     evaluatorTest = new EvaluatorTest();
     kernel = new KernelTest("sid", evaluatorTest, MessageCreator.get(), new MagicCommandConfigurationMock()) {
@@ -64,7 +64,7 @@ public class ExecuteRequestHandlerTest {
     };
   }
 
-  @Before
+  @BeforeEach
   public void setUp() {
     executeRequestHandler = new ExecuteRequestHandler(kernel);
     message = MessageFactoryTestMock.initExecuteRequestMessage();
@@ -72,12 +72,12 @@ public class ExecuteRequestHandlerTest {
     magicMessage.getContent().put("code", "%lsmagic");
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     kernel.clearPublishedMessages();
   }
 
-  @AfterClass
+  @AfterAll
   public static void tearDownClass() throws Exception {
     evaluatorTest.exit();
   }

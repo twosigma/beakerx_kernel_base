@@ -24,9 +24,9 @@ import com.twosigma.beakerx.jvm.ObserverObjectTest;
 import com.twosigma.beakerx.jvm.serialization.BasicObjectSerializer;
 import com.twosigma.beakerx.jvm.serialization.SerializationTestHelper;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -39,13 +39,13 @@ public class BeakerDashboardTest {
   private static BeakerDashboard.Serializer serializer;
   private static SerializationTestHelper<BeakerDashboard.Serializer, BeakerDashboard> helper;
 
-  @BeforeClass
+  @BeforeAll
   public static void setUpClass() throws IOException {
     serializer = new BeakerDashboard.Serializer();
     helper = new SerializationTestHelper<>(serializer);
   }
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     dashboard = new BeakerDashboard() {};
     row = dashboard.newRow();

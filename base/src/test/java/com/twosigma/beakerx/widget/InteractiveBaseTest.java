@@ -20,9 +20,9 @@ import com.twosigma.beakerx.KernelTest;
 import com.twosigma.beakerx.kernel.KernelManager;
 import com.twosigma.beakerx.KernelTestFactory;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -32,13 +32,13 @@ import java.util.Map;
 public class InteractiveBaseTest {
   private KernelTest kernel;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     kernel = KernelTestFactory.getKernel();
     KernelManager.register(kernel);
     }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

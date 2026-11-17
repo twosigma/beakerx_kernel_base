@@ -23,16 +23,16 @@ import com.twosigma.beakerx.kernel.KernelManager;
 import net.sf.jtreemap.swing.DefaultValue;
 import net.sf.jtreemap.swing.TreeMapNode;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class GradientColorProviderTest {
 
   TreeMap treeMap;
   TreeMapNode node01;
 
-  @Before
+  @BeforeEach
   public void initStubData() {
     KernelManager.register(KernelTestFactory.getKernel());
     treeMap = new TreeMap();
@@ -40,7 +40,7 @@ public class GradientColorProviderTest {
     node01 = new TreeMapNode("010", 1, new DefaultValue(1));
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

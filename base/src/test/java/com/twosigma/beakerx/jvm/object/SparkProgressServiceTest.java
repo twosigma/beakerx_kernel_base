@@ -17,9 +17,9 @@
 package com.twosigma.beakerx.jvm.object;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -40,7 +40,7 @@ public class SparkProgressServiceTest {
   private static Field stagesPerJobField;
   private static Field executorIdsField;
 
-  @BeforeClass
+  @BeforeAll
   public static void setUpClass() throws Exception {
     activeTasksField = SparkProgressService.class.getDeclaredField("activeTasks");
     activeTasksField.setAccessible(true);
@@ -58,7 +58,7 @@ public class SparkProgressServiceTest {
     executorIdsField.setAccessible(true);
   }
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     service = new SparkProgressService();
   }

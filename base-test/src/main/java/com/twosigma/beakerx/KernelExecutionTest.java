@@ -28,7 +28,7 @@ import com.twosigma.beakerx.kernel.magic.command.functionality.LoadMagicMagicCom
 import com.twosigma.beakerx.kernel.magic.command.functionality.UnImportMagicCommandInfo;
 import com.twosigma.beakerx.message.Message;
 import com.twosigma.beakerx.widget.TestWidgetUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;

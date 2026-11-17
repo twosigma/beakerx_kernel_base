@@ -17,14 +17,14 @@
 package com.twosigma.beakerx.chart.xychart.plotitem;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class AreaTest {
 
   private Area area;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     area = new Area();
   }
@@ -37,16 +37,14 @@ public class AreaTest {
     Assertions.assertThat(area.getInterpolation()).isNull();
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void setInterpolationWithPositive2_throwIllegalArgumentException() {
-    //when
-    area.setInterpolation(new Integer(-2));
+    org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class, () -> area.setInterpolation(new Integer(-2)));
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void setInterpolationWithNegative2_throwIllegalArgumentException() {
-    //when
-    area.setInterpolation(new Integer(2));
+    org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class, () -> area.setInterpolation(new Integer(2)));
   }
 
   @Test

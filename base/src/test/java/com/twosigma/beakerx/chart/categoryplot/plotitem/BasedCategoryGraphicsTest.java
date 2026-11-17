@@ -16,13 +16,13 @@
 
 package com.twosigma.beakerx.chart.categoryplot.plotitem;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BasedCategoryGraphicsTest {
   protected BasedCategoryGraphics graphics;
@@ -37,7 +37,7 @@ public class BasedCategoryGraphicsTest {
   protected List<Object> numberAndNonNumberList = Arrays.asList(1, "2", 3);
   protected List<Object> numberAndListWithNonNumbersList = Arrays.asList(1, 2, Arrays.asList(3, "4", 5));
 
-  @Before
+  @BeforeEach
   public void setup() {
     graphics = new BasedCategoryGraphics() {};
   }
@@ -70,13 +70,13 @@ public class BasedCategoryGraphicsTest {
     assertEquals(listOfNumbersAndListsOfNumbers, graphics.getBases());
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void setBaseListOfNumbersAndNonNumbers() throws Exception {
-    graphics.setBase(numberAndNonNumberList);
+    org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class, () -> graphics.setBase(numberAndNonNumberList));
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void setBaseListofListsWithNonNumbers() throws Exception {
-    graphics.setBase(numberAndListWithNonNumbersList);
+    org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class, () -> graphics.setBase(numberAndListWithNonNumbersList));
   }
 }

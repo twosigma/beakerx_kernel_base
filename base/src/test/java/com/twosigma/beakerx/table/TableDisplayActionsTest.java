@@ -22,8 +22,8 @@ import com.twosigma.beakerx.kernel.handler.CommMsgHandler;
 import com.twosigma.beakerx.kernel.msg.JupyterMessages;
 import com.twosigma.beakerx.message.Message;
 import com.twosigma.beakerx.widget.CommActions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.Serializable;
 import java.util.LinkedHashMap;
@@ -41,7 +41,7 @@ public class TableDisplayActionsTest {
   private CommMsgHandler commMsgHandler;
   private TableDisplay tableDisplay;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     kernel = KernelTestFactory.getKernel();
     KernelManager.register(kernel);

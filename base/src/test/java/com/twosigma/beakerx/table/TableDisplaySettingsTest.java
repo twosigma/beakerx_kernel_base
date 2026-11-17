@@ -20,9 +20,9 @@ import com.twosigma.beakerx.KernelTestFactory;
 import com.twosigma.beakerx.ResourceLoaderTest;
 import com.twosigma.beakerx.kernel.KernelManager;
 import org.jetbrains.annotations.NotNull;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -37,13 +37,13 @@ public class TableDisplaySettingsTest {
 
   private TableDisplay tableDisplay;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     KernelManager.register(KernelTestFactory.getKernel());
     tableDisplay = new TableDisplay(ObservableTableDisplayTest.getListOfMapsData());
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

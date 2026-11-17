@@ -26,9 +26,9 @@ import com.twosigma.beakerx.widget.Widget;
 import com.twosigma.beakerx.widget.IntSlider;
 import com.twosigma.beakerx.widget.Text;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,7 +42,7 @@ public class AccordionTest {
   private KernelTest kernel;
   private List<Widget> children;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     kernel = KernelTestFactory.getKernel();
     KernelManager.register(kernel);
@@ -50,7 +50,7 @@ public class AccordionTest {
     kernel.clearPublishedMessages();
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

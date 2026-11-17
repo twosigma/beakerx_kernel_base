@@ -18,8 +18,8 @@ package com.twosigma.beakerx.jvm.threads;
 import com.twosigma.beakerx.kernel.msg.JupyterMessages;
 import com.twosigma.beakerx.message.Header;
 import com.twosigma.beakerx.message.Message;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +31,7 @@ public class InputRequestMessageFactoryImplTest {
 
   private InputRequestMessageFactoryImpl inputRequestMessageFactory;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     inputRequestMessageFactory = new InputRequestMessageFactoryImpl();
   }

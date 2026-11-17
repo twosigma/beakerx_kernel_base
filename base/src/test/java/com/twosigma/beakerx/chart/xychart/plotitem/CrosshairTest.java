@@ -18,14 +18,14 @@ package com.twosigma.beakerx.chart.xychart.plotitem;
 
 import com.twosigma.beakerx.chart.Color;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class CrosshairTest {
 
   Crosshair crosshair;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     crosshair = new Crosshair();
   }

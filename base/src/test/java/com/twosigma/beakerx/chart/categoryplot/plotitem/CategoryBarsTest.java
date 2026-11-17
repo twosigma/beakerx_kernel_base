@@ -18,8 +18,8 @@ package com.twosigma.beakerx.chart.categoryplot.plotitem;
 
 import com.twosigma.beakerx.chart.Color;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +29,7 @@ public class CategoryBarsTest {
   Integer[] array1, array2;
   CategoryBars categoryBars;
 
-  @Before
+  @BeforeEach
   public void initStubData() {
     categoryBars = new CategoryBars();
     array1 = new Integer[] {new Integer(1), new Integer(2)};

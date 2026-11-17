@@ -26,9 +26,9 @@ import com.twosigma.beakerx.chart.xychart.XYChart;
 import com.twosigma.beakerx.kernel.KernelManager;
 import com.twosigma.beakerx.message.Message;
 import com.twosigma.beakerx.widget.BeakerxPlot;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -56,13 +56,13 @@ public abstract class ChartTest<T extends Chart> {
 
   protected KernelTest kernel;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     kernel = KernelTestFactory.getKernel();
     KernelManager.register(kernel);
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     kernel.exit();
     KernelManager.register(null);

@@ -17,8 +17,8 @@
 package com.twosigma.beakerx.chart.xychart.plotitem;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
@@ -26,7 +26,7 @@ public class StemsTest {
 
   Stems stems;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     stems = new Stems();
   }

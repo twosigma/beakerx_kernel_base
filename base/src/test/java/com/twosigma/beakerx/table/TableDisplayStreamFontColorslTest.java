@@ -25,9 +25,9 @@ import com.twosigma.beakerx.message.Header;
 import com.twosigma.beakerx.message.Message;
 import com.twosigma.beakerx.widget.TestWidgetUtils;
 import org.jetbrains.annotations.NotNull;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.Serializable;
 import java.util.LinkedHashMap;
@@ -44,7 +44,7 @@ public class TableDisplayStreamFontColorslTest {
   protected KernelTest kernel;
   private TableDisplay tableDisplay;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     kernel = KernelTestFactory.getKernel();
     KernelManager.register(kernel);
@@ -65,7 +65,7 @@ public class TableDisplayStreamFontColorslTest {
     kernel.clearMessages();
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
     TableDisplay.setLoadingMode(TableDisplayLoadingMode.ALL);

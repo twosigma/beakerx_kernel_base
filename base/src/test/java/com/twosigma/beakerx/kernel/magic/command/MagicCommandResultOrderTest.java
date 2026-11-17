@@ -23,9 +23,9 @@ import com.twosigma.beakerx.kernel.Code;
 import com.twosigma.beakerx.kernel.PlainCode;
 import com.twosigma.beakerx.kernel.msg.MessageCreator;
 import com.twosigma.beakerx.message.Message;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -39,13 +39,13 @@ public class MagicCommandResultOrderTest {
   private KernelTest kernel;
   private CodeFactory codeFactory;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     this.kernel = new KernelTest("id2", new EvaluatorTest(), MessageCreator.get(), new MagicCommandConfigurationMock());
     codeFactory = new CodeFactory(MessageCreator.get(), SimpleEvaluationObjectFactory.get());
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     kernel.exit();
   }

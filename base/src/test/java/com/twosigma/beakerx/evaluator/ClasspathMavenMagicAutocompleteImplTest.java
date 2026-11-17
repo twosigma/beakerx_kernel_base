@@ -19,7 +19,7 @@ import com.twosigma.beakerx.autocomplete.AutocompleteResult;
 import com.twosigma.beakerx.autocomplete.AutocompleteService;
 import com.twosigma.beakerx.autocomplete.AutocompleteServiceBeakerx;
 import com.twosigma.beakerx.kernel.magic.autocomplete.MagicCommandAutocompletePatternsImpl;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 

@@ -22,7 +22,7 @@ import com.twosigma.beakerx.evaluator.EvaluatorResultTestWatcher;
 import com.twosigma.beakerx.kernel.KernelRunner;
 import com.twosigma.beakerx.message.Message;
 import com.twosigma.beakerx.widget.TestWidgetUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
@@ -30,7 +30,7 @@ import static com.twosigma.beakerx.KernelExecutionTest.DEMO_JAR_NAME;
 import static com.twosigma.beakerx.KernelExecutionTest.LOAD_MAGIC_JAR_DEMO_JAR_NAME;
 import static com.twosigma.beakerx.evaluator.EvaluatorResultTestWatcher.waitForIdleMessage;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public abstract class ClasspathAddDynamicMagicCommandTest extends KernelSetUpFixtureTest {
 
@@ -57,7 +57,7 @@ public abstract class ClasspathAddDynamicMagicCommandTest extends KernelSetUpFix
   private void verifyResult() throws InterruptedException {
     Optional<Message> updateMessage = EvaluatorResultTestWatcher.waitForUpdateMessage(kernelSocketsService.getKernelSockets());
     String text =  (String) TestWidgetUtils.getState(updateMessage.get()).get("value");
-    assertTrue("No jar added", text.contains(DEMO_JAR_NAME));
+    assertTrue(text.contains(DEMO_JAR_NAME), "No jar added");
   }
 
   @Test
@@ -80,7 +80,7 @@ public abstract class ClasspathAddDynamicMagicCommandTest extends KernelSetUpFix
     assertThat(idleMessage).isPresent();
     Optional<Message> updateMessage = EvaluatorResultTestWatcher.waitForUpdateMessage(kernelSocketsService.getKernelSockets());
     String text =  (String) TestWidgetUtils.getState(updateMessage.get()).get("value");
-    assertTrue("Should be two added jars", text.contains(DEMO_JAR_NAME) && text.contains(LOAD_MAGIC_JAR_DEMO_JAR_NAME));
+    assertTrue(text.contains(DEMO_JAR_NAME) && text.contains(LOAD_MAGIC_JAR_DEMO_JAR_NAME), "Should be two added jars");
   }
 
   private void runCode(String code) throws InterruptedException {

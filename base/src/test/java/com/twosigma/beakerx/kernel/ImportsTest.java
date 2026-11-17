@@ -16,8 +16,8 @@
 package com.twosigma.beakerx.kernel;
 
 import com.twosigma.beakerx.jvm.classloader.BeakerXUrlClassLoader;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
@@ -28,7 +28,7 @@ public class ImportsTest {
   private Imports imports;
   private BeakerXUrlClassLoader urlClassLoader;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     imports = new Imports(new ArrayList<>());
     urlClassLoader = new BeakerXUrlClassLoader();

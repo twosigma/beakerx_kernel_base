@@ -27,7 +27,7 @@ import com.twosigma.beakerx.chart.xychart.plotitem.ConstantLine;
 import com.twosigma.beakerx.chart.xychart.plotitem.Line;
 import com.twosigma.beakerx.chart.xychart.plotitem.Rasters;
 import com.twosigma.beakerx.chart.xychart.plotitem.Text;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;

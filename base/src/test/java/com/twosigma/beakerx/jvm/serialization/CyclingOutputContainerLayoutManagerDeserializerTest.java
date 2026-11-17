@@ -20,15 +20,15 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.twosigma.beakerx.jvm.object.CyclingOutputContainerLayoutManager;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class CyclingOutputContainerLayoutManagerDeserializerTest {
 
   private String json;
   private long period;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     period = 5000L;
     json = "{\"type\":\"CyclingOutputContainerLayoutManager\"," +

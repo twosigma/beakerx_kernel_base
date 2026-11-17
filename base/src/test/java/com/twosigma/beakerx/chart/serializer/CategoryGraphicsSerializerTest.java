@@ -23,9 +23,9 @@ import com.twosigma.beakerx.chart.categoryplot.plotitem.CategoryBars;
 import com.twosigma.beakerx.chart.categoryplot.plotitem.CategoryGraphics;
 import com.twosigma.beakerx.jvm.serialization.SerializationTestHelper;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -36,13 +36,13 @@ public class CategoryGraphicsSerializerTest {
   private static CategoryGraphicsSerializer serializer;
   private static SerializationTestHelper<CategoryGraphicsSerializer, CategoryGraphics> helper;
 
-  @BeforeClass
+  @BeforeAll
   public static void setUpClass() throws IOException {
     serializer = new CategoryBarsSerializer();
     helper = new SerializationTestHelper<>(serializer);
   }
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     categoryGraphics = new CategoryBars();
   }

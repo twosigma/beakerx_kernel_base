@@ -60,7 +60,10 @@ public class KernelConfigurationFile implements ConfigurationFile {
   public Config getConfig() {
     if (configuration == null) {
       logger.debug("Path to config file : " + config.getAbsolutePath());
-      configuration = MessageSerializer.parse(new String(readConfig(), StandardCharsets.UTF_8), Config.class);
+        configuration = MessageSerializer.parse(new String(readConfig(), StandardCharsets.UTF_8), Config.class);
+        if (configuration == null) {
+          throw new IllegalStateException("Jupyter connection file produced no configuration");
+        }
       logger.debug("Creating signing hmac with: {}", configuration.getKey());
     }
     return configuration;

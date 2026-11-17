@@ -24,8 +24,8 @@ import com.twosigma.beakerx.kernel.magic.command.MagicCommandConfigurationMock;
 import com.twosigma.beakerx.kernel.msg.JupyterMessages;
 import com.twosigma.beakerx.kernel.msg.MessageCreator;
 import com.twosigma.beakerx.kernel.msg.MessageHolder;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -35,7 +35,7 @@ public class MessageCreatorNoResultTest {
 
   KernelTest kernel;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     kernel = KernelTestFactory.getKernel();
   }

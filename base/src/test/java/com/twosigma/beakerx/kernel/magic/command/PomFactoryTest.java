@@ -17,8 +17,8 @@ package com.twosigma.beakerx.kernel.magic.command;
 
 import com.google.common.collect.Maps;
 import com.twosigma.beakerx.kernel.magic.command.MavenJarResolver.Dependency;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
@@ -63,7 +63,7 @@ public class PomFactoryTest {
 
   private PomFactory pomFactory;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     pomFactory = new PomFactory();
   }

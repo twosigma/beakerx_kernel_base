@@ -15,7 +15,7 @@
  */
 package com.twosigma.beakerx.kernel.msg;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.twosigma.beakerx.kernel.msg.TracebackPrinter.END;
 import static com.twosigma.beakerx.kernel.msg.TracebackPrinter.RED;

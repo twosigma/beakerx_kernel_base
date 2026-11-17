@@ -20,8 +20,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.twosigma.beakerx.jvm.serialization.BasicObjectSerializer;
 import com.twosigma.beakerx.jvm.serialization.SerializationTestHelper;
 import org.assertj.core.api.Assertions;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
@@ -30,7 +30,7 @@ public class EvaluationResultTest {
   private static EvaluationResult.Serializer serializer;
   private static SerializationTestHelper<EvaluationResult.Serializer, EvaluationResult> helper;
 
-  @BeforeClass
+  @BeforeAll
   public static void setUpClass() throws IOException {
     serializer = new EvaluationResult.Serializer(new BasicObjectSerializer());
     helper = new SerializationTestHelper<>(serializer);

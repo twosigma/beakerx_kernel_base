@@ -17,7 +17,7 @@
 package com.twosigma.beakerx.message;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class HeaderTest {
 
@@ -27,7 +27,8 @@ public class HeaderTest {
           + "\"msg_type\":\"execute_request\","
           + "\"msg_id\":\"9CEE9EE3351643CD83A6C2A29401A942\","
           + "\"username\":\"username\","
-          + "\"session\":\"605DC3793F6F402698418908DBC7C572\""
+           + "\"session\":\"605DC3793F6F402698418908DBC7C572\","
+           + "\"subshell_id\":\"subshell-id\""
           + "}";
 
   @Test

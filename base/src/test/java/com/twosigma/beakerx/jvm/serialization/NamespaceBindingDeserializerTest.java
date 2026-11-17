@@ -20,7 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.twosigma.beakerx.CodeCell;
 import com.twosigma.beakerx.shared.NamespaceBinding;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class NamespaceBindingDeserializerTest {
 

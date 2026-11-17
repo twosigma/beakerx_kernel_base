@@ -16,7 +16,7 @@
 package com.twosigma.beakerx.kernel;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.twosigma.beakerx.KernelExecutionTest.DEMO_JAR;
 import static com.twosigma.beakerx.KernelExecutionTest.DEMO_JAR_NAME;

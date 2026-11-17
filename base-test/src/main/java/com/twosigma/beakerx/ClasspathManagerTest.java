@@ -17,7 +17,7 @@ package com.twosigma.beakerx;
 
 import com.twosigma.beakerx.kernel.KernelRunner;
 import com.twosigma.beakerx.kernel.PathToJar;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileOutputStream;

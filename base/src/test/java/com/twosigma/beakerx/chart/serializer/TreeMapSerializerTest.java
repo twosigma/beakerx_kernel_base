@@ -32,10 +32,10 @@ import com.twosigma.beakerx.kernel.msg.MessageCreator;
 import net.sf.jtreemap.swing.DefaultValue;
 import net.sf.jtreemap.swing.TreeMapNode;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -47,7 +47,7 @@ public class TreeMapSerializerTest {
   StringWriter sw;
   TreeMap treeMap;
 
-  @BeforeClass
+  @BeforeAll
   public static void initClassStubData() {
     mapper = new ObjectMapper();
     mapper.disable(MapperFeature.AUTO_DETECT_GETTERS);
@@ -58,7 +58,7 @@ public class TreeMapSerializerTest {
 
   }
 
-  @Before
+  @BeforeEach
   public void initTestStubData() throws IOException {
     KernelManager.register(new KernelTest(MessageCreator.get(), new MagicCommandConfigurationMock()));
     sw = new StringWriter();
@@ -66,7 +66,7 @@ public class TreeMapSerializerTest {
     treeMap = new TreeMap(new TreeMapNode("label", 1, new DefaultValue(1.5)));
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

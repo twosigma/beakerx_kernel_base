@@ -23,8 +23,8 @@ import com.twosigma.beakerx.kernel.Code;
 import com.twosigma.beakerx.kernel.msg.MessageCreator;
 import com.twosigma.beakerx.message.Message;
 import com.twosigma.beakerx.mimetype.MIMEContainer;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;
@@ -38,7 +38,7 @@ public class JavaScriptMagicCommandTest {
   private KernelTest kernel;
   private CodeFactory codeFactory;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     this.kernel = KernelTestFactory.getKernel();
     codeFactory = new CodeFactory(MessageCreator.get(), SimpleEvaluationObjectFactory.get());

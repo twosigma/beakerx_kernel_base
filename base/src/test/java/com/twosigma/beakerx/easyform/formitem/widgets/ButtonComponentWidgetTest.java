@@ -21,7 +21,7 @@ import com.twosigma.beakerx.evaluator.EvaluatorResultTestWatcher;
 import com.twosigma.beakerx.jvm.threads.BeakerStdInOutErrHandler;
 import com.twosigma.beakerx.widget.Button;
 import com.twosigma.beakerx.message.Message;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.Serializable;
 import java.util.LinkedHashMap;
@@ -33,7 +33,7 @@ import static com.twosigma.beakerx.kernel.msg.MessageCreator.STDOUT;
 import static com.twosigma.beakerx.kernel.msg.MessageCreator.TEXT;
 import static com.twosigma.beakerx.widget.TestWidgetUtils.getValueForProperty;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ButtonComponentWidgetTest extends EasyFormWidgetTest {
 
@@ -112,7 +112,7 @@ public class ButtonComponentWidgetTest extends EasyFormWidgetTest {
 
   private Message getOutputMessage(KernelTest kernel) throws InterruptedException {
     Optional<Message> message = EvaluatorResultTestWatcher.waitForStreamMessage(kernel);
-    assertTrue("No output message", message.isPresent());
+    assertTrue(message.isPresent(), "No output message");
     return message.get();
   }
 

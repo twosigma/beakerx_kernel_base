@@ -17,7 +17,7 @@ package com.twosigma.beakerx.easyform.formitem.widgets;
 
 import com.twosigma.beakerx.easyform.EasyFormComponent;
 import com.twosigma.beakerx.widget.SelectMultiple;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.twosigma.beakerx.widget.TestWidgetUtils.verifyMsgForProperty;
 import static java.util.Arrays.asList;

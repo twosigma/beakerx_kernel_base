@@ -16,8 +16,8 @@
 
 package com.twosigma.beakerx.chart.xychart;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,7 +30,7 @@ public class TimePlotTest extends XYChartTest<TimePlot> {
 
   private Date lowerBound, upperBound;
 
-  @Before
+  @BeforeEach
   public void initStubData() throws ParseException {
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
     lowerBound = sdf.parse("01-01-2000");

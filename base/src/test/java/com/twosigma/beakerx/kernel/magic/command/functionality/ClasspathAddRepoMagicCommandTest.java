@@ -24,9 +24,9 @@ import com.twosigma.beakerx.kernel.magic.command.CodeFactory;
 import com.twosigma.beakerx.kernel.magic.command.MagicCommandConfigurationMock;
 import com.twosigma.beakerx.kernel.msg.MessageCreator;
 import com.twosigma.beakerx.message.Message;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -42,14 +42,14 @@ public class ClasspathAddRepoMagicCommandTest {
   private EvaluatorTest evaluator;
   private CodeFactory codeFactory;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     this.evaluator = new EvaluatorTest();
     this.kernel = new KernelTest("id2", evaluator, MessageCreator.get(), new MagicCommandConfigurationMock());
     codeFactory = new CodeFactory(MessageCreator.get(), SimpleEvaluationObjectFactory.get());
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     kernel.exit();
   }

@@ -20,8 +20,8 @@ import com.twosigma.beakerx.evaluator.SimpleEvaluationObjectFactory;
 import com.twosigma.beakerx.kernel.Code;
 import com.twosigma.beakerx.kernel.KernelFunctionality;
 import com.twosigma.beakerx.kernel.msg.MessageCreator;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static com.twosigma.beakerx.MessageFactorTest.commMsg;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -31,7 +31,7 @@ public class CodeFactoryTest {
   private KernelFunctionality kernel;
   private CodeFactory codeFactory;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     this.kernel = KernelTestFactory.getKernel();
     codeFactory = new CodeFactory(MessageCreator.get(), SimpleEvaluationObjectFactory.get());

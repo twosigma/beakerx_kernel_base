@@ -20,9 +20,9 @@ import com.twosigma.beakerx.KernelTest;
 import com.twosigma.beakerx.KernelTestFactory;
 import com.twosigma.beakerx.widget.SelectionSlider;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.security.NoSuchAlgorithmException;
 
@@ -35,13 +35,13 @@ public class SelectionSliderTest {
 
   private KernelTest kernel;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     kernel = KernelTestFactory.getKernel();
     KernelManager.register(kernel);
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

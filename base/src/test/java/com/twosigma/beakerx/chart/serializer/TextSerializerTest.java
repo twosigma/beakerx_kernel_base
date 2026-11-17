@@ -24,9 +24,9 @@ import com.twosigma.beakerx.chart.Color;
 import com.twosigma.beakerx.chart.xychart.NanoPlot;
 import com.twosigma.beakerx.chart.xychart.plotitem.Text;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -40,13 +40,13 @@ public class TextSerializerTest {
   StringWriter sw;
   Text text;
 
-  @BeforeClass
+  @BeforeAll
   public static void initClassStubData() {
     mapper = new ObjectMapper();
     textSerializer = new TextSerializer();
   }
 
-  @Before
+  @BeforeEach
   public void initTestStubData() throws IOException {
     sw = new StringWriter();
     jgen = mapper.getJsonFactory().createJsonGenerator(sw);

@@ -20,15 +20,15 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.twosigma.beakerx.jvm.object.TabbedOutputContainerLayoutManager;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class TabbedOutputContainerLayoutManagerDeserializerTest {
 
   private String json;
   private boolean borderDisplayed;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     borderDisplayed = true;
     json = "{\"type\":\"TabbedOutputContainerLayoutManager\"," +

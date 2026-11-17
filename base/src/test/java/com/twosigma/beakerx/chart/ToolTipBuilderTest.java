@@ -19,8 +19,8 @@ package com.twosigma.beakerx.chart;
 import com.twosigma.beakerx.chart.xychart.plotitem.Bars;
 import com.twosigma.beakerx.chart.xychart.plotitem.BasedXYGraphics;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
@@ -28,7 +28,7 @@ public class ToolTipBuilderTest {
 
   private BasedXYGraphics xyGraphics;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     xyGraphics = new Bars();
     xyGraphics.setX(Arrays.asList(10, 20));

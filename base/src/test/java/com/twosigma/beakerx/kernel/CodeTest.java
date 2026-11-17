@@ -22,9 +22,9 @@ import com.twosigma.beakerx.kernel.magic.command.CodeFactory;
 import com.twosigma.beakerx.kernel.magic.command.MagicCommand;
 import com.twosigma.beakerx.kernel.magic.command.MagicCommandConfigurationMock;
 import com.twosigma.beakerx.kernel.msg.MessageCreator;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import static com.twosigma.beakerx.MessageFactorTest.commMsg;
 import static com.twosigma.beakerx.kernel.magic.command.functionality.ClasspathAddJarMagicCommandInfo.CLASSPATH_ADD_JAR;
@@ -36,14 +36,14 @@ public class CodeTest {
   private static KernelTest kernel;
   private static EvaluatorTest evaluator;
   private static CodeFactory codeFactory;
-  @BeforeClass
+  @BeforeAll
   public static void setUp() {
     evaluator = new EvaluatorTest();
     kernel = new KernelTest("id2", evaluator, MessageCreator.get(), new MagicCommandConfigurationMock());
     codeFactory = new CodeFactory(MessageCreator.get(), SimpleEvaluationObjectFactory.get());
   }
 
-  @AfterClass
+  @AfterAll
   public static void tearDown() {
     evaluator.exit();
   }

@@ -19,7 +19,7 @@ import com.twosigma.beakerx.jvm.object.OutputCell;
 import com.twosigma.beakerx.mimetype.MIMEContainer;
 import jupyter.Displayer;
 import jupyter.Displayers;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.List;

@@ -17,14 +17,14 @@
 package com.twosigma.beakerx.chart.actions;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class XYGraphicsActionObjectTest {
 
   private XYGraphicsActionObject actionObject;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     actionObject = new XYGraphicsActionObject();
   }

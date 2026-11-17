@@ -28,10 +28,10 @@ import com.twosigma.beakerx.chart.xychart.plotitem.PlotOrientationType;
 import com.twosigma.beakerx.kernel.KernelManager;
 import com.twosigma.beakerx.KernelTest;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -45,13 +45,13 @@ public class CategoryPlotSerializerTest {
   StringWriter sw;
   KernelTest kernel;
 
-  @BeforeClass
+  @BeforeAll
   public static void initClassStubData() {
     mapper = new ObjectMapper();
     categoryPlotSerializer = new CategoryPlotSerializer();
   }
 
-  @Before
+  @BeforeEach
   public void initTestStubData() throws IOException {
     sw = new StringWriter();
     jgen = mapper.getJsonFactory().createJsonGenerator(sw);
@@ -59,7 +59,7 @@ public class CategoryPlotSerializerTest {
     KernelManager.register(kernel);
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     kernel.exit();
     KernelManager.register(null);

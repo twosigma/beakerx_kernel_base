@@ -23,9 +23,9 @@ import com.twosigma.beakerx.table.format.ValueStringFormat;
 import com.twosigma.beakerx.table.highlight.ValueHighlighter;
 import org.assertj.core.api.Assertions;
 import org.jetbrains.annotations.NotNull;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,13 +36,13 @@ public class TableDisplayClosureTest {
 
   private TableDisplay tableDisplay;
 
-  @Before
+  @BeforeEach
   public void setUp(){
     KernelManager.register(KernelTestFactory.getKernel());
     tableDisplay = new TableDisplay(getListOfMapsData());
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }
@@ -161,40 +161,34 @@ public class TableDisplayClosureTest {
     Assertions.assertThat(fValues.size()).isEqualTo(1);
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void setStringFormatForColumnEmptyColName_throwIllegalArgumentException() throws Exception {
-    //when
-    tableDisplay.setStringFormatForColumn("", new Object());
+    org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class, () -> tableDisplay.setStringFormatForColumn("", new Object()));
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void setStringFormatForColumnWithEmptyObject_throwIllegalArgumentException() throws Exception {
-    //when
-    tableDisplay.setStringFormatForColumn("colName", new Object());
+    org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class, () -> tableDisplay.setStringFormatForColumn("colName", new Object()));
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void addCellHighlighterWithEmptyObject_throwIllegalArgumentException() throws Exception {
-    //when
-    tableDisplay.addCellHighlighter(new Object());
+    org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class, () -> tableDisplay.addCellHighlighter(new Object()));
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void setToolTipWithEmptyObject_throwIllegalArgumentException() throws Exception {
-    //when
-    tableDisplay.setToolTip(new Object());
+    org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class, () -> tableDisplay.setToolTip(new Object()));
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void setFontColorProviderWithEmptyObject_throwIllegalArgumentException() throws Exception {
-    //when
-    tableDisplay.setFontColorProvider(new Object());
+    org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class, () -> tableDisplay.setFontColorProvider(new Object()));
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void setRowFilterWithEmptyObject_throwIllegalArgumentException() throws Exception {
-    //when
-    tableDisplay.setRowFilter(new Object());
+    org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class, () -> tableDisplay.setRowFilter(new Object()));
   }
 
   private List<Map<String, Object>> getListOfMapsData() {

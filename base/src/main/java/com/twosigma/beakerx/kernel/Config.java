@@ -16,7 +16,9 @@
 package com.twosigma.beakerx.kernel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Config {
 	
     private String transport;

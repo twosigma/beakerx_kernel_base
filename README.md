@@ -29,11 +29,15 @@ Please check the main repositoy for further informations:
 [beakerx](https://github.com/twosigma/beakerx)
 
 
-### Build and Install (linux and mac)
+### Build and Install (Java 17+)
 
 ```
 ./gradlew clean install
 ```
+
+The build targets Java 25 by default and is also verified with Java 17. Select
+the compatibility toolchain with `-PjavaVersion=17`. Gradle is provided by the
+wrapper; no system Gradle installation is required.
 
 ## Related repositories:
 * [clojure kernel](https://github.com/twosigma/beakerx_kernel_clojure)
