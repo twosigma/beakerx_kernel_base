@@ -21,7 +21,7 @@ import com.twosigma.beakerx.widget.BeakerxWidgetTestRunner;
 import com.twosigma.beakerx.widget.TestWidgetUtils;
 import com.twosigma.beakerx.widget.Widget;
 import com.twosigma.beakerx.message.Message;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;

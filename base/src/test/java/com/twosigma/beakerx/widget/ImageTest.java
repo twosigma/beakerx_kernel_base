@@ -21,9 +21,9 @@ import com.twosigma.beakerx.KernelTestFactory;
 import com.twosigma.beakerx.kernel.comm.Comm;
 import com.twosigma.beakerx.message.Message;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -36,13 +36,13 @@ public class ImageTest {
 
   private KernelTest groovyKernel;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     groovyKernel = KernelTestFactory.getKernel();
     KernelManager.register(groovyKernel);
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

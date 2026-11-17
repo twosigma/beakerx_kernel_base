@@ -21,11 +21,13 @@ import static com.twosigma.beakerx.util.Preconditions.checkNotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.twosigma.beakerx.kernel.Utils;
 import com.twosigma.beakerx.kernel.msg.JupyterMessages;
 import com.twosigma.beakerx.util.Preconditions;
 
 @JsonPropertyOrder({ "id", "username", "session", "date", "type", "version" })
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Header {
 
   public static final String MSG_ID = "msg_id";

@@ -20,15 +20,15 @@ import com.twosigma.beakerx.chart.Color;
 import java.util.Arrays;
 import java.util.List;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class CategoryAreasTest {
 
   Integer[] array1, array2;
   CategoryArea categoryArea;
 
-  @Before
+  @BeforeEach
   public void initStubData() {
     categoryArea = new CategoryArea();
     array1 = new Integer[]{1, 2};

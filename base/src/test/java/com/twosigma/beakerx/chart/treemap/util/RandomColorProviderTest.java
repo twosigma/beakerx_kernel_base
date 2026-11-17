@@ -20,8 +20,8 @@ import com.twosigma.beakerx.chart.Color;
 import net.sf.jtreemap.swing.DefaultValue;
 import net.sf.jtreemap.swing.TreeMapNode;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
@@ -29,7 +29,7 @@ public class RandomColorProviderTest {
 
   TreeMapNode node01, node02;
 
-  @Before
+  @BeforeEach
   public void initStubData() {
     node01 = new TreeMapNode("010", 1, new DefaultValue(1));
     node02 = new TreeMapNode("021");

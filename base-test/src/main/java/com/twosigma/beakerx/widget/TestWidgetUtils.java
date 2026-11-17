@@ -32,7 +32,7 @@ import static com.twosigma.beakerx.kernel.msg.JupyterMessages.COMM_OPEN;
 import static com.twosigma.beakerx.widget.WidgetInfo.DISPLAY;
 import static com.twosigma.beakerx.widget.WidgetInfo.METHOD;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestWidgetUtils {
 
@@ -134,7 +134,7 @@ public class TestWidgetUtils {
     List<Message> messages = SearchMessages
             .getListByDataAttr(kernel.getPublishedMessages(), Comm.METHOD, Comm.UPDATE);
     messages = messages.stream().filter(x -> getState(x).containsKey(propertyName)).collect(Collectors.toList());
-    assertTrue("No update comm message.", messages.size() > 0);
+    assertTrue(messages.size() > 0, "No update comm message.");
     return getValueForProperty(messages.get(0), propertyName, clazz);
   }
 
@@ -145,7 +145,7 @@ public class TestWidgetUtils {
   public static Optional<Message> getMessageUpdate(List<Message> messages) {
     List<Message> list = SearchMessages
             .getListByDataAttr(messages, Comm.METHOD, Comm.UPDATE);
-    assertTrue("No update comm message.", list.size() > 0);
+    assertTrue(list.size() > 0, "No update comm message.");
     return list.stream().filter(x -> x.getHeader().getType().equals(JupyterMessages.COMM_MSG.getName())).findFirst();
   }
 

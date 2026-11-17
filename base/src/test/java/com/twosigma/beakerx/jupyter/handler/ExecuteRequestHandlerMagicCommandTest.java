@@ -25,9 +25,9 @@ import com.twosigma.beakerx.kernel.magic.command.MagicCommandConfigurationMock;
 import com.twosigma.beakerx.kernel.msg.MessageCreator;
 import com.twosigma.beakerx.message.Message;
 import com.twosigma.beakerx.widget.TestWidgetUtils;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
@@ -54,14 +54,14 @@ public class ExecuteRequestHandlerMagicCommandTest {
   private EvaluatorTest evaluator;
   private ExecuteRequestHandler executeRequestHandler;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     evaluator = new EvaluatorTest();
     kernel = new KernelTest("sid", evaluator, MessageCreator.get(), new MagicCommandConfigurationMock());
     executeRequestHandler = new ExecuteRequestHandler(kernel);
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     kernel.clearMessages();
     evaluator.exit();

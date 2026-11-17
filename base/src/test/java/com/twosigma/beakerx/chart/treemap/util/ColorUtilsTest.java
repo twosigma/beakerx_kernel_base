@@ -18,7 +18,7 @@ package com.twosigma.beakerx.chart.treemap.util;
 
 import com.twosigma.beakerx.chart.Color;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ColorUtilsTest {
 

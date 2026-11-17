@@ -39,9 +39,9 @@ import com.twosigma.beakerx.table.serializer.ThreeColorHeatmapHighlighterSeriali
 import com.twosigma.beakerx.table.serializer.TimeStringFormatSerializer;
 import com.twosigma.beakerx.table.serializer.UniqueEntriesHighlighterSerializer;
 import com.twosigma.beakerx.table.serializer.ValueHighlighterSerializer;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -86,8 +86,8 @@ import static com.twosigma.beakerx.widget.TestWidgetUtils.getValueForProperty;
 import static com.twosigma.beakerx.widget.TestWidgetUtils.verifyOpenCommMsgWitoutLayout;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class TableDisplayTest {
 
@@ -98,7 +98,7 @@ public class TableDisplayTest {
 
   private TableDisplay tableDisplay;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     kernel = KernelTestFactory.getKernel();
     KernelManager.register(kernel);
@@ -107,7 +107,7 @@ public class TableDisplayTest {
     kernel.clearMessages();
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }
@@ -889,7 +889,7 @@ public class TableDisplayTest {
 
   private LinkedHashMap getModelUpdate() {
     Optional<Message> messageUpdate = getMessageUpdate(kernel);
-    assertTrue("No " + JupyterMessages.COMM_MSG.getName() + " msg.", messageUpdate.isPresent());
+    assertTrue(messageUpdate.isPresent(), "No " + JupyterMessages.COMM_MSG.getName() + " msg.");
     return getModelUpdate(messageUpdate.get());
   }
 

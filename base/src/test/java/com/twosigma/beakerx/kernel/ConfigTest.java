@@ -17,7 +17,7 @@ package com.twosigma.beakerx.kernel;
 
 import com.twosigma.beakerx.message.MessageSerializer;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ConfigTest {
   private static String srcJson =
@@ -30,8 +30,9 @@ public class ConfigTest {
                   + "  \"key\": \"7ce00df6-f1de-4425-ab4b-8c209a54a4ad\", \n"
                   + "  \"kernel_name\": \"groovy\", \n"
                   + "  \"shell_port\": 54103, \n"
-                  + "  \"transport\": \"tcp\", \n"
-                  + "  \"iopub_port\": 54104\n"
+                   + "  \"transport\": \"tcp\", \n"
+                   + "  \"iopub_port\": 54104,\n"
+                   + "  \"jupyter_session\": \"session-id\"\n"
                   + "}";
 
   @Test

@@ -20,7 +20,7 @@ import com.twosigma.beakerx.chart.Color;
 import com.twosigma.beakerx.chart.xychart.plotitem.Line;
 import com.twosigma.beakerx.chart.xychart.plotitem.Points;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -162,10 +162,12 @@ public class SimpleTimePlotTest extends XYChartTest<SimpleTimePlot> {
             .isEqualTo("name2");
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void createInstanceWithStringValues_throwIllegalArgumentException() {
-    createDataForSimpleTimePlot();
-    new SimpleTimePlot(rates, Arrays.asList("m3", "str", "time", "num"));
+    org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class, () -> {
+      createDataForSimpleTimePlot();
+      new SimpleTimePlot(rates, Arrays.asList("m3", "str", "time", "num"));
+    });
   }
 
   private void createDataForSimpleTimePlot() {

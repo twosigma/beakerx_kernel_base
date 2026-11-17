@@ -17,7 +17,7 @@
 package com.twosigma.beakerx.chart;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ColorTest {
 
@@ -112,15 +112,15 @@ public class ColorTest {
     Assertions.assertThat(color.getBlue()).isEqualTo(200);
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void createColorWithIllegalIntRGBParams_ThrowIllegalArgumentException()
       throws IllegalArgumentException {
-    new Color(300, 150, 200);
+    org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class, () -> new Color(300, 150, 200));
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void createColorWithIllegalFloatRGBParams_ThrowIllegalArgumentException()
       throws IllegalArgumentException {
-    new Color(100.1f, 0.2f, 0.3f);
+    org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class, () -> new Color(100.1f, 0.2f, 0.3f));
   }
 }

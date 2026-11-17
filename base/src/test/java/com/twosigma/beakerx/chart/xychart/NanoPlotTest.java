@@ -19,8 +19,8 @@ package com.twosigma.beakerx.chart.xychart;
 import com.twosigma.beakerx.chart.xychart.plotitem.Line;
 import com.twosigma.beakerx.chart.xychart.plotitem.Points;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
 import java.util.Arrays;
@@ -29,7 +29,7 @@ public class NanoPlotTest  extends XYChartTest<NanoPlot>{
   Line line;
   Points points;
 
-  @Before
+  @BeforeEach
   public void initStubData() {
     BigInteger val1 = new BigInteger("12345678901234567891000");
     BigInteger val2 = new BigInteger("12345678901234567892000");

@@ -20,8 +20,8 @@ import com.twosigma.beakerx.KernelTestFactory;
 import com.twosigma.beakerx.kernel.magic.command.MagicCommandConfigurationMock;
 import com.twosigma.beakerx.kernel.msg.MessageCreator;
 import com.twosigma.beakerx.message.Message;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
@@ -32,7 +32,7 @@ public class BxInputStreamTest {
   private InputRequestMessageFactory inputRequestMessageFactory;
   private KernelTest kernelTest = KernelTestFactory.getKernel();
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     inputRequestMessageFactory = new InputRequestMessageFactoryMock();
     kernelTest = new KernelTest(MessageCreator.get(), new MagicCommandConfigurationMock());

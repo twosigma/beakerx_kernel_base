@@ -33,10 +33,10 @@ import com.twosigma.beakerx.chart.xychart.plotitem.Bars;
 import com.twosigma.beakerx.jvm.object.ConsoleOutput;
 import net.sf.jtreemap.swing.TreeMapNode;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.StringWriter;
 import java.util.Arrays;
@@ -46,7 +46,7 @@ public class PlotObjectSerializerTest {
   private static JsonGenerator jgen;
   private static ObjectMapper mapper;
 
-  @BeforeClass
+  @BeforeAll
   public static void setUpClass() throws Exception {
     mapper = new ObjectMapper();
     mapper.disable(MapperFeature.AUTO_DETECT_GETTERS);
@@ -56,13 +56,13 @@ public class PlotObjectSerializerTest {
     jgen = mapper.getFactory().createGenerator(new StringWriter());
   }
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     KernelManager.register(KernelTestFactory.getKernel());
     plotObjectSerializer = new PlotObjectSerializer();
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

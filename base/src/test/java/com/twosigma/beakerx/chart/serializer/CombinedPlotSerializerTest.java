@@ -30,10 +30,10 @@ import com.twosigma.beakerx.chart.xychart.Plot;
 import com.twosigma.beakerx.chart.xychart.SimpleTimePlot;
 import com.twosigma.beakerx.chart.xychart.XYChart;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -51,7 +51,7 @@ public class CombinedPlotSerializerTest {
   StringWriter sw;
   KernelTest kernel;
 
-  @BeforeClass
+  @BeforeAll
   public static void initClassStubData() {
     mapper = new ObjectMapper();
     combinedPlotSerializer = new CombinedPlotSerializer();
@@ -61,7 +61,7 @@ public class CombinedPlotSerializerTest {
     mapper.registerModule(module);
   }
 
-  @Before
+  @BeforeEach
   public void initTestStubData() throws IOException {
     sw = new StringWriter();
     jgen = mapper.getJsonFactory().createJsonGenerator(sw);
@@ -69,7 +69,7 @@ public class CombinedPlotSerializerTest {
     KernelManager.register(kernel);
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     kernel.exit();
     KernelManager.register(null);

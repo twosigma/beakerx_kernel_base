@@ -15,7 +15,7 @@
  */
 package com.twosigma.beakerx.fileloader;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
 import java.net.URI;

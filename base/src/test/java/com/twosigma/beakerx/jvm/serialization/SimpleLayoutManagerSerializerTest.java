@@ -21,10 +21,10 @@ import com.twosigma.beakerx.kernel.KernelManager;
 import com.twosigma.beakerx.KernelTestFactory;
 import com.twosigma.beakerx.jvm.object.SimpleLayoutManager;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
@@ -34,19 +34,19 @@ public class SimpleLayoutManagerSerializerTest {
   private static SimpleLayoutManagerSerializer serializer;
   private static SerializationTestHelper<SimpleLayoutManagerSerializer, SimpleLayoutManager> helper;
 
-  @BeforeClass
+  @BeforeAll
   public static void setUpClass() throws IOException {
     serializer = new SimpleLayoutManagerSerializer(new BasicObjectSerializer());
     helper = new SerializationTestHelper<>(serializer);
   }
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     KernelManager.register(KernelTestFactory.getKernel());
     layoutManager = new SimpleLayoutManager();
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

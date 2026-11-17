@@ -17,8 +17,8 @@
 package com.twosigma.beakerx.chart.xychart.plotitem;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +26,7 @@ import java.util.List;
 public class XYStackerTest {
   BasedXYGraphics area1, area2, area3;
 
-  @Before
+  @BeforeEach
   public void initStubData() {
     area1 = new Area();
     area1.setX(Arrays.asList(new Integer(1)));

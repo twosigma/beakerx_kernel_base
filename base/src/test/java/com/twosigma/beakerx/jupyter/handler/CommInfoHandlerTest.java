@@ -22,9 +22,9 @@ import com.twosigma.beakerx.MessageFactoryTestMock;
 import com.twosigma.beakerx.kernel.msg.JupyterMessages;
 import com.twosigma.beakerx.kernel.handler.CommInfoHandler;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import com.twosigma.beakerx.message.Message;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CommInfoHandlerTest {
 
@@ -32,7 +32,7 @@ public class CommInfoHandlerTest {
   private CommInfoHandler commInfoHandler;
   private Message message;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     kernel = KernelTestFactory.getKernel();
     commInfoHandler = new CommInfoHandler(kernel);

@@ -18,8 +18,8 @@ package com.twosigma.beakerx.chart.categoryplot.plotitem;
 
 import com.twosigma.beakerx.chart.xychart.plotitem.StrokeType;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
@@ -27,7 +27,7 @@ public class CategoryLinesTest {
 
   CategoryLines categoryLines;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     categoryLines = new CategoryLines();
   }

@@ -17,8 +17,8 @@
 package com.twosigma.beakerx.chart.serializer;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ public class HistogramReducerTest {
   public static final int NUMBER_OF_NODES_TO_DISPLAY = 10;
   private HistogramReducer sut;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     sut = new HistogramReducer(ROWS_LIMIT, NUMBER_OF_NODES_TO_DISPLAY);
   }

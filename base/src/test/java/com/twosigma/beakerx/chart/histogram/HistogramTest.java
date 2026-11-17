@@ -20,8 +20,8 @@ import com.twosigma.beakerx.chart.AbstractChart;
 import com.twosigma.beakerx.chart.AbstractChartTest;
 import com.twosigma.beakerx.chart.Color;
 import com.twosigma.beakerx.chart.serializer.HistogramSerializer;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -42,7 +42,7 @@ public class HistogramTest extends AbstractChartTest<Histogram> {
   private List<Integer> list1, list2;
   private Histogram histogram;
 
-  @Before
+  @BeforeEach
   public void init() throws Exception {
     list1 = asList(1, 2);
     list2 = asList(3, 4);
@@ -196,12 +196,12 @@ public class HistogramTest extends AbstractChartTest<Histogram> {
     assertThat(actual.get(0)).startsWith("#");
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void setColorWithStringParam_throwIllegalArgumentException() {
-    //given
-    histogram = createWidget();
-    //when
-    histogram.setColor(asList("blue"));
+    org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class, () -> {
+      histogram = createWidget();
+      histogram.setColor(asList("blue"));
+    });
   }
 
   @Override

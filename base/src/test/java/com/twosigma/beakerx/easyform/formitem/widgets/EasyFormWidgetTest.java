@@ -20,9 +20,9 @@ import com.twosigma.beakerx.KernelTestFactory;
 import com.twosigma.beakerx.easyform.EasyFormComponent;
 import com.twosigma.beakerx.kernel.KernelManager;
 import com.twosigma.beakerx.message.Message;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static com.twosigma.beakerx.widget.TestWidgetUtils.getValueForProperty;
 import static com.twosigma.beakerx.widget.Widget.DESCRIPTION;
@@ -32,13 +32,13 @@ public abstract class EasyFormWidgetTest {
 
   protected KernelTest kernel;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     kernel = KernelTestFactory.getKernel();
     KernelManager.register(kernel);
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

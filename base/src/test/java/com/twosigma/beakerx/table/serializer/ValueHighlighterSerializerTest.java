@@ -26,10 +26,10 @@ import com.twosigma.beakerx.chart.Color;
 import com.twosigma.beakerx.kernel.KernelManager;
 import com.twosigma.beakerx.table.highlight.ValueHighlighter;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -42,13 +42,13 @@ public class ValueHighlighterSerializerTest {
   private static ObjectMapper mapper;
   private static ValueHighlighterSerializer serializer;
 
-  @BeforeClass
+  @BeforeAll
   public static void setUpClass() {
     mapper = new ObjectMapper();
     serializer = new ValueHighlighterSerializer();
   }
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     KernelManager.register(KernelTestFactory.getKernel());
     sw = new StringWriter();
@@ -56,7 +56,7 @@ public class ValueHighlighterSerializerTest {
     valueHighlighter = new ValueHighlighter("a", Arrays.asList(Color.BLACK, Color.BLUE));
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

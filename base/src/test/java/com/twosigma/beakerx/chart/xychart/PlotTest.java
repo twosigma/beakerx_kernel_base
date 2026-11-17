@@ -22,8 +22,8 @@ import com.twosigma.beakerx.chart.xychart.plotitem.ConstantLine;
 import com.twosigma.beakerx.chart.xychart.plotitem.Line;
 import com.twosigma.beakerx.chart.xychart.plotitem.Rasters;
 import com.twosigma.beakerx.chart.xychart.plotitem.Text;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -36,7 +36,7 @@ public class PlotTest extends XYChartTest<Plot> {
   Line line;
   Area area;
 
-  @Before
+  @BeforeEach
   public void initStubData() {
     plot = new Plot();
     line = new Line();

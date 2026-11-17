@@ -17,14 +17,14 @@
 package com.twosigma.beakerx.jvm.object;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class SparkStageProgressTest {
 
   private SparkProgressService.StageProgress stageProgress;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     stageProgress = new SparkProgressService.StageProgress();
   }

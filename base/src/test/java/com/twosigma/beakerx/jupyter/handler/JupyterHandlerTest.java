@@ -26,12 +26,12 @@ import com.twosigma.beakerx.kernel.handler.CommInfoHandler;
 import com.twosigma.beakerx.kernel.handler.CommMsgHandler;
 import com.twosigma.beakerx.kernel.handler.CommOpenHandler;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import com.twosigma.beakerx.handler.Handler;
 import com.twosigma.beakerx.message.Message;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -66,13 +66,13 @@ public class JupyterHandlerTest {
     return commId;
   }
 
-  @BeforeClass
+  @BeforeAll
   public static void setUpClass() {
     kernel = KernelTestFactory.getKernel();
   }
 
 
-  @Before
+  @BeforeEach
   public void setUp() {
     commOpenHandler = new CommOpenHandler(kernel) {
       @Override
@@ -85,7 +85,7 @@ public class JupyterHandlerTest {
     commMsgHandler = new CommMsgHandler(kernel);
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     kernel.clearMessages();
   }

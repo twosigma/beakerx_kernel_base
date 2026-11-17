@@ -29,10 +29,10 @@ import com.twosigma.beakerx.message.Header;
 import com.twosigma.beakerx.message.Message;
 import com.twosigma.beakerx.widget.TestWidgetUtils;
 import org.apache.commons.io.FileUtils;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -58,7 +58,7 @@ import static com.twosigma.beakerx.kernel.magic.command.functionality.ClasspathA
 import static com.twosigma.beakerx.kernel.magic.command.functionality.ClasspathResetMagicCommand.CLASSPATH_RESET;
 import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ClasspathAddMvnDepsMagicCommandTest {
 
@@ -68,14 +68,14 @@ public class ClasspathAddMvnDepsMagicCommandTest {
 
   private MagicCommandConfigurationMock configuration = new MagicCommandConfigurationMock();
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     evaluator = new EvaluatorTest();
     kernel = new KernelTest("id2", evaluator, MessageCreator.get(), configuration);
     prepareLocalMavenRepository();
   }
 
-  @After
+  @AfterEach
   public void tearDown() {
     evaluator.exit();
   }
@@ -129,8 +129,8 @@ public class ClasspathAddMvnDepsMagicCommandTest {
     String text = (String) stderr.get(0).getContent().get("text");
     assertThat(text).contains("Reset done");
     List<String> deletedFiles = kernel.getFileService().getDeletedFiles();
-    Assert.assertTrue(deletedFiles.contains(mvnMagicCommand.getCommandParams().getPathToCache()));
-    Assert.assertTrue(deletedFiles.contains(mvnMagicCommand.getCommandParams().getPathToNotebookJars()));
+    Assertions.assertTrue(deletedFiles.contains(mvnMagicCommand.getCommandParams().getPathToCache()));
+    Assertions.assertTrue(deletedFiles.contains(mvnMagicCommand.getCommandParams().getPathToNotebookJars()));
     assertTrue(mvnMagicCommand.getRepos().get().size() == DEFAULT_MAVEN_REPOS.size());
   }
 

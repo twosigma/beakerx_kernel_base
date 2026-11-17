@@ -18,7 +18,7 @@ package com.twosigma.beakerx.chart.heatmap;
 
 import com.twosigma.beakerx.chart.AbstractChartTest;
 import com.twosigma.beakerx.chart.GradientColor;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

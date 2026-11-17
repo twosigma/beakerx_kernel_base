@@ -21,10 +21,10 @@ import com.twosigma.beakerx.kernel.KernelManager;
 import com.twosigma.beakerx.KernelTestFactory;
 import com.twosigma.beakerx.ResourceLoaderTest;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -34,19 +34,19 @@ public class ImageIconSerializerTest {
   private static ImageIconSerializer serializer;
   private static SerializationTestHelper<ImageIconSerializer, ImageIcon> helper;
 
-  @BeforeClass
+  @BeforeAll
   public static void setUpClass() throws Exception {
     serializer = new ImageIconSerializer();
     helper = new SerializationTestHelper<>(serializer);
     imageIcon = new ImageIcon(ResourceLoaderTest.getOsAppropriatePath("logo.png", ResourceLoaderTest.class));
   }
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     KernelManager.register(KernelTestFactory.getKernel());
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

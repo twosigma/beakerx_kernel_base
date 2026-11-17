@@ -18,8 +18,8 @@ package com.twosigma.beakerx.chart.xychart.plotitem;
 
 import com.twosigma.beakerx.chart.Color;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 
@@ -27,7 +27,7 @@ public class ConstantLineTest {
 
   ConstantLine constantLine;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     constantLine = new ConstantLine();
   }

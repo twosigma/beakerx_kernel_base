@@ -29,9 +29,9 @@ import com.twosigma.beakerx.table.format.TableDisplayStringFormat;
 import com.twosigma.beakerx.table.highlight.HighlightStyle;
 import com.twosigma.beakerx.table.highlight.TableDisplayCellHighlighter;
 import com.twosigma.beakerx.table.renderer.TableDisplayCellRenderer;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -50,13 +50,13 @@ public class TableDisplaySerializerTest {
 
   private TableDisplay tableDisplay;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     KernelManager.register(KernelTestFactory.getKernel());
     tableDisplay = new TableDisplay(ObservableTableDisplayTest.getListOfMapsData());
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

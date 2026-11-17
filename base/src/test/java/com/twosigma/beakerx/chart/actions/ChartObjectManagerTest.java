@@ -22,23 +22,23 @@ import com.twosigma.beakerx.chart.Chart;
 import com.twosigma.beakerx.chart.xychart.Plot;
 import com.twosigma.beakerx.kernel.KernelManager;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class ChartObjectManagerTest {
 
   private ChartObjectManager chartObjectManager;
   protected KernelTest kernel;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     chartObjectManager = new ChartObjectManager();
     kernel = KernelTestFactory.getKernel();
     KernelManager.register(kernel);
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     kernel.exit();
     KernelManager.register(null);

@@ -17,8 +17,8 @@
 package com.twosigma.beakerx.autocomplete;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,7 +29,7 @@ public class AutocompleteCandidateTest {
   private String[] keys = new String[]{ "System", "out", "print"};
   private AutocompleteCandidate autocompleteCandidate;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     autocompleteCandidate = new AutocompleteCandidate(1, "key");
   }

@@ -17,8 +17,8 @@
 package com.twosigma.beakerx.autocomplete;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +30,7 @@ public class AutocompleteRegistryTest {
   private AutocompleteCandidate aParent;
   AutocompleteRegistry autocompleteRegistry;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     autocompleteRegistry = new AutocompleteRegistry(2);
     aParent = new AutocompleteCandidate(type, "System");

@@ -26,9 +26,9 @@ import com.twosigma.beakerx.chart.xychart.plotitem.Line;
 import com.twosigma.beakerx.chart.xychart.plotitem.StrokeType;
 import java.util.Arrays;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -41,13 +41,13 @@ public class LineSerializerTest {
   StringWriter sw;
   Line line;
 
-  @BeforeClass
+  @BeforeAll
   public static void initClassStubData() {
     mapper = new ObjectMapper();
     lineSerializer = new LineSerializer();
   }
 
-  @Before
+  @BeforeEach
   public void initTestStubData() throws IOException {
     sw = new StringWriter();
     jgen = mapper.getJsonFactory().createJsonGenerator(sw);

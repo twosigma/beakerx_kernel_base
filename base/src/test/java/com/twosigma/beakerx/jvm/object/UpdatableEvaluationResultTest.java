@@ -22,8 +22,8 @@ import com.twosigma.beakerx.jvm.ObserverObjectTest;
 import com.twosigma.beakerx.jvm.serialization.BasicObjectSerializer;
 import com.twosigma.beakerx.jvm.serialization.SerializationTestHelper;
 import org.assertj.core.api.Assertions;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
@@ -32,7 +32,7 @@ public class UpdatableEvaluationResultTest {
   private static UpdatableEvaluationResult.Serializer serializer;
   private static SerializationTestHelper<UpdatableEvaluationResult.Serializer, UpdatableEvaluationResult> helper;
 
-  @BeforeClass
+  @BeforeAll
   public static void setUpClass() throws IOException {
     serializer = new UpdatableEvaluationResult.Serializer();
     helper = new SerializationTestHelper<>(serializer);

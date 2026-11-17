@@ -14,37 +14,41 @@
  *  limitations under the License.
  */
 wrapper {
-    gradleVersion = '6.4.1'
+    gradleVersion = '9.1.0'
 }
 allprojects {
-    apply plugin: 'java'
+    apply plugin: 'java-library'
     repositories {
-        jcenter()
-        maven { url 'https://jitpack.io' }
+        mavenCentral()
+        maven { url = 'https://jitpack.io' }
     }
 
 }
+
+def buildJavaVersion = providers.gradleProperty('javaVersion').map { it.toInteger() }.getOrElse(25)
 
 subprojects {
     ext {
         beakerxVersion = "2.0-SNAPSHOT"
     }
-    apply plugin: 'maven'
     apply plugin: 'maven-publish'
 
-    compileJava {
-        options.compilerArgs << '-XDenableSunApiLintControl'
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(buildJavaVersion)
+        }
+    }
+
+    tasks.withType(JavaCompile).configureEach {
         options.encoding = "UTF-8"
     }
 
-    java {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+    tasks.withType(Test).configureEach {
+        useJUnitPlatform()
     }
 
-    install {
+    tasks.register('install') {
         dependsOn 'build'
         dependsOn 'publishToMavenLocal'
     }
 }
-

@@ -28,9 +28,9 @@ import com.twosigma.beakerx.kernel.magic.command.MagicCommandConfigurationMock;
 import com.twosigma.beakerx.kernel.msg.JupyterMessages;
 import com.twosigma.beakerx.kernel.msg.MessageCreator;
 import com.twosigma.beakerx.message.Message;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
@@ -46,14 +46,14 @@ public class CommTest {
   private KernelTest kernel;
   private Comm comm;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     kernel = KernelTestFactory.getKernel();
     KernelManager.register(kernel);
     comm = new BxComm("targetName");
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

@@ -24,9 +24,9 @@ import com.twosigma.beakerx.jvm.object.SimpleEvaluationObject;
 import com.twosigma.beakerx.kernel.magic.command.MagicCommandConfigurationMock;
 import com.twosigma.beakerx.kernel.msg.MessageCreator;
 import com.twosigma.beakerx.message.Message;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -40,14 +40,14 @@ public class OutputWidgetTest {
 
   private KernelTest groovyKernel;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     groovyKernel = KernelTestFactory.getKernel();
     KernelManager.register(groovyKernel);
     submitCodeToExecution();
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

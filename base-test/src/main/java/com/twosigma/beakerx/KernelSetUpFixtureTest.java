@@ -19,8 +19,8 @@ import com.twosigma.beakerx.kernel.CloseKernelAction;
 import com.twosigma.beakerx.kernel.KernelFunctionality;
 import com.twosigma.beakerx.kernel.KernelRunner;
 import com.twosigma.beakerx.kernel.KernelSocketsFactory;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 public abstract class KernelSetUpFixtureTest {
 
@@ -33,7 +33,7 @@ public abstract class KernelSetUpFixtureTest {
     this.kernelRunner = kernelRunner;
   }
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     String sessionId = "sessionId2";
     kernelSocketsService = new KernelSocketsServiceTest();
@@ -43,7 +43,7 @@ public abstract class KernelSetUpFixtureTest {
     kernelSocketsService.waitForSockets();
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     kernelSocketsService.shutdown();
     kernelThread.join();

@@ -20,9 +20,9 @@ import com.twosigma.beakerx.KernelTest;
 import com.twosigma.beakerx.kernel.KernelManager;
 import com.twosigma.beakerx.KernelTestFactory;
 import com.twosigma.beakerx.widget.BxHTML;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static com.twosigma.beakerx.widget.TestWidgetUtils.verifyInternalOpenCommMsgWitLayout;
 import static com.twosigma.beakerx.widget.TestWidgetUtils.verifyMsgForProperty;
@@ -31,13 +31,13 @@ public class BxHTMLTest {
 
   private KernelTest groovyKernel;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     groovyKernel = KernelTestFactory.getKernel();
     KernelManager.register(groovyKernel);
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

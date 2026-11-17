@@ -25,10 +25,10 @@ import com.twosigma.beakerx.kernel.PlainCode;
 import com.twosigma.beakerx.kernel.magic.command.MagicCommandConfigurationMock;
 import com.twosigma.beakerx.kernel.msg.MessageCreator;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import static com.twosigma.beakerx.MessageFactorTest.commMsg;
 
@@ -37,17 +37,17 @@ public class EvaluatorManagerTest {
   private EvaluatorTest evaluator;
   private static KernelTest kernel;
 
-  @BeforeClass
+  @BeforeAll
   public static void setUpClass() throws Exception {
     kernel = KernelTestFactory.getKernel();
   }
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     evaluator = new EvaluatorTest();
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     this.evaluator.exit();
   }

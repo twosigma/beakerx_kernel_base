@@ -17,8 +17,8 @@
 package com.twosigma.beakerx.jvm.object;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
@@ -26,7 +26,7 @@ public class SparkJobProgressTest {
 
   private SparkProgressService.JobProgress jobProgress;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     jobProgress = new SparkProgressService.JobProgress();
   }

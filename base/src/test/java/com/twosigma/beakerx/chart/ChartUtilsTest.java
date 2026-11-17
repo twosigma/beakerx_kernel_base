@@ -17,7 +17,7 @@
 package com.twosigma.beakerx.chart;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
@@ -51,9 +51,9 @@ public class ChartUtilsTest {
     Assertions.assertThat(((List)outlineColors.get(1)).get(0) instanceof Color).isTrue();
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void callConvertColorsWithNumberListParam_throwIllegalArgumentException() {
-    //when
-    ChartUtils.convertColors(Arrays.asList(100, 200), "takes Color or List of Color");
+    org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class, () ->
+        ChartUtils.convertColors(Arrays.asList(100, 200), "takes Color or List of Color"));
   }
 }

@@ -33,14 +33,11 @@ public class MessageSerializer {
   }
 
   public static <T> T parse(String json, Class<T> theClass) {
-    T result = null;
     try {
-      result = mapper.readValue(json, theClass);
+      return mapper.readValue(json, theClass);
     } catch (Exception e) {
-      // Ignored.
+      throw new IllegalArgumentException("Unable to parse JSON as " + theClass.getName(), e);
     }
-
-    return result;
   }
 
   public static String toJson(Object object) {

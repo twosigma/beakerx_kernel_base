@@ -17,8 +17,8 @@ package com.twosigma.beakerx.chart.serializer;
 
 
 import org.jetbrains.annotations.NotNull;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ public class HeatMapReducerTest {
   public static final int COLUMN_LIMIT = 100;
   private HeatMapReducer sut;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     sut = new HeatMapReducer(COLUMN_LIMIT, ROWS_LIMIT);
   }

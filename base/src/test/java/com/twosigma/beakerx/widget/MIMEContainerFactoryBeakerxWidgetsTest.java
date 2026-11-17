@@ -17,8 +17,8 @@ package com.twosigma.beakerx.widget;
 
 import com.twosigma.beakerx.MIMEContainerFactory;
 import com.twosigma.beakerx.kernel.comm.Comm;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.twosigma.beakerx.message.Message;
 
@@ -28,7 +28,7 @@ import static com.twosigma.beakerx.kernel.msg.JupyterMessages.COMM_OPEN;
 import static com.twosigma.beakerx.widget.TestWidgetUtils.getValueForProperty;
 import static com.twosigma.beakerx.widget.Widget.DISPLAY;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MIMEContainerFactoryBeakerxWidgetsTest {
 
@@ -40,7 +40,7 @@ public class MIMEContainerFactoryBeakerxWidgetsTest {
       //when
       MIMEContainerFactory.createMIMEContainers(internalWidget);
       //then
-      assertEquals("Should be 3 messages for " + clazz, groovyKernel.getPublishedMessages().size(), 3);
+      assertEquals(groovyKernel.getPublishedMessages().size(), 3, "Should be 3 messages for " + clazz);
       assertThat(groovyKernel.getPublishedMessages().size()).isEqualTo(3);
       verifyOpenMsg(groovyKernel.getPublishedMessages().get(0), clazz);
       verifyModelMsg(groovyKernel.getPublishedMessages().get(1), clazz);
@@ -49,17 +49,17 @@ public class MIMEContainerFactoryBeakerxWidgetsTest {
   }
 
   private void verifyOpenMsg(Message message, Class clazz) {
-    assertEquals("Type is not equal to COMM_OPEN for  " + clazz, message.getHeader().getType(), COMM_OPEN.getName());
+    assertEquals(message.getHeader().getType(), COMM_OPEN.getName(), "Type is not equal to COMM_OPEN for  " + clazz);
   }
 
   private void verifyDisplayMsg(Message message, Class clazz) {
     Map data = TestWidgetUtils.getData(message);
-    assertEquals("Method is not equal to DISPLAY for  " + clazz, data.get(Comm.METHOD), DISPLAY);
+    assertEquals(data.get(Comm.METHOD), DISPLAY, "Method is not equal to DISPLAY for  " + clazz);
   }
 
   private void verifyModelMsg(Message message, Class clazz) {
     String model = getValueForProperty(message, BeakerxWidget.MODEL, String.class);
-    Assert.assertNotNull("Model should not be null for  " + clazz, model);
+    Assertions.assertNotNull("Model should not be null for  " + clazz, model);
   }
 
 

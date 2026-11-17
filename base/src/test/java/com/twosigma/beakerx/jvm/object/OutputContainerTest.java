@@ -17,8 +17,8 @@
 package com.twosigma.beakerx.jvm.object;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,7 +29,7 @@ public class OutputContainerTest {
   private OutputContainer container;
   private String label = "test_label";
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     container = new OutputContainer();
   }

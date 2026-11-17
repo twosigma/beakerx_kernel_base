@@ -19,8 +19,8 @@ package com.twosigma.beakerx.jvm.object;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.twosigma.beakerx.jvm.serialization.SerializationTestHelper;
 import org.assertj.core.api.Assertions;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
@@ -29,7 +29,7 @@ public class TestContainerTest {
   private static TestContainer.Serializer serializer;
   private static SerializationTestHelper<TestContainer.Serializer, TestContainer> helper;
 
-  @BeforeClass
+  @BeforeAll
   public static void setUpClass() throws IOException {
     serializer = new TestContainer.Serializer();
     helper = new SerializationTestHelper<>(serializer);

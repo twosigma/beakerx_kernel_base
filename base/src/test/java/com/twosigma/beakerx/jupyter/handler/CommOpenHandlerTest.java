@@ -22,10 +22,10 @@ import com.twosigma.beakerx.MessageFactoryTestMock;
 import com.twosigma.beakerx.kernel.msg.JupyterMessages;
 import com.twosigma.beakerx.kernel.handler.CommOpenHandler;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import com.twosigma.beakerx.handler.Handler;
 import com.twosigma.beakerx.message.Message;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
@@ -40,7 +40,7 @@ public class CommOpenHandlerTest {
   private CommOpenHandler commOpenHandler;
   private Message message;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     kernel = KernelTestFactory.getKernel();
     commOpenHandler = new CommOpenHandler(kernel) {

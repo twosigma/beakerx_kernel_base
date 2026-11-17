@@ -17,8 +17,8 @@
 package com.twosigma.beakerx.jvm.classloader;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -32,7 +32,7 @@ public class DynamicClassLoaderSimpleTest {
   private static String fileName =
       "com/twosigma/beakerx/jvm/classloader/DynamicClassLoaderSimpleTest.class";
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     loader = new DynamicClassLoaderSimple(DynamicClassLoaderSimpleTest.class.getClassLoader());
   }

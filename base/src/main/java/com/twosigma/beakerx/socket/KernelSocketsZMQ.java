@@ -80,7 +80,7 @@ public class KernelSocketsZMQ extends KernelSockets {
     stdinSocket = getNewSocket(ZMQ.ROUTER, configuration.getStdin(), connection, context);
     shellSocket = getNewSocket(ZMQ.ROUTER, configuration.getShell(), connection, context);
 
-    sockets = new ZMQ.Poller(3);
+    sockets = context.poller(3);
     sockets.register(hearbeatSocket, ZMQ.Poller.POLLIN);
     sockets.register(shellSocket, ZMQ.Poller.POLLIN);
     sockets.register(controlSocket, ZMQ.Poller.POLLIN);

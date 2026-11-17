@@ -16,7 +16,7 @@
 package com.twosigma.beakerx.autocomplete;
 
 import com.twosigma.beakerx.evaluator.BaseEvaluator;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

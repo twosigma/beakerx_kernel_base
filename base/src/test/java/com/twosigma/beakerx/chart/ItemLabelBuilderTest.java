@@ -23,10 +23,10 @@ import com.twosigma.beakerx.chart.categoryplot.plotitem.CategoryBars;
 import com.twosigma.beakerx.chart.categoryplot.plotitem.CategoryGraphics;
 import com.twosigma.beakerx.kernel.KernelManager;
 import org.assertj.core.api.Assertions;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
@@ -35,13 +35,13 @@ public class ItemLabelBuilderTest {
   private CategoryPlot categoryPlot;
   private static KernelTest kernel;
 
-  @BeforeClass
+  @BeforeAll
   public static void setUpClass() throws Exception {
     kernel = KernelTestFactory.getKernel();
     KernelManager.register(kernel);
   }
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     categoryGraphics = new CategoryBars();
     categoryGraphics.setValue(new Integer[] {new Integer(1), new Integer(2)});
@@ -51,7 +51,7 @@ public class ItemLabelBuilderTest {
     categoryPlot.add(Arrays.asList(categoryGraphics));
   }
 
-  @AfterClass
+  @AfterAll
   public static void tearDown() throws Exception {
     kernel.exit();
     KernelManager.register(null);

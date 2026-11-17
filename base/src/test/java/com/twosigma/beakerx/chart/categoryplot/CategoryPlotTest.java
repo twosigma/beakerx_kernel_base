@@ -25,8 +25,8 @@ import com.twosigma.beakerx.chart.categoryplot.plotitem.CategoryStems;
 import com.twosigma.beakerx.chart.serializer.CategoryPlotSerializer;
 import com.twosigma.beakerx.chart.xychart.plotitem.PlotOrientationType;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,7 +45,7 @@ public class CategoryPlotTest extends AbstractChartTest<CategoryPlot> {
   Integer[] array1, array2;
   CategoryGraphics categoryBars, categoryLines, categoryPoints, categoryStems;
 
-  @Before
+  @BeforeEach
   public void initStubData() {
     array1 = new Integer[]{new Integer(1), new Integer(2)};
     array2 = new Integer[]{new Integer(3), new Integer(4)};

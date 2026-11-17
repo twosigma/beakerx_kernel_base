@@ -20,15 +20,15 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.twosigma.beakerx.jvm.object.GridOutputContainerLayoutManager;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class GridOutputContainerLayoutManagerDeserializerTest {
 
   private String json;
   private int columns;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     columns = 10;
     json = "{\"type\":\"GridOutputContainerLayoutManager\"," +

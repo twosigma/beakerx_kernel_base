@@ -19,7 +19,7 @@ import com.twosigma.beakerx.SimpleEvaluationObjectMock;
 import com.twosigma.beakerx.TryResult;
 import com.twosigma.beakerx.jvm.object.EvaluationObject;
 import com.twosigma.beakerx.kernel.GroupName;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.nio.file.Files;
 import java.nio.file.Path;

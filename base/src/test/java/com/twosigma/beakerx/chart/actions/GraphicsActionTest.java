@@ -24,9 +24,9 @@ import com.twosigma.beakerx.chart.xychart.plotitem.XYGraphics;
 import com.twosigma.beakerx.kernel.KernelManager;
 
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
@@ -38,7 +38,7 @@ public class GraphicsActionTest {
   private GraphicsActionListenerStub actionListener;
   private KernelTest kernel;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     kernel = KernelTestFactory.getKernel();
     KernelManager.register(kernel);
@@ -50,7 +50,7 @@ public class GraphicsActionTest {
   }
 
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     kernel.exit();
   }

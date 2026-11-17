@@ -19,9 +19,9 @@ package com.twosigma.beakerx.table;
 import com.twosigma.beakerx.kernel.KernelManager;
 import com.twosigma.beakerx.KernelTestFactory;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,13 +36,13 @@ public class ObservableTableDisplayTest {
   private TableDisplay tableDisplay;
   private int rowId = 0, colId = 0;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     KernelManager.register(KernelTestFactory.getKernel());
     tableDisplay = new TableDisplay(getListOfMapsData());
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

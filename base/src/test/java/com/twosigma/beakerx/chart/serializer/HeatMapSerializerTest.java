@@ -29,10 +29,10 @@ import com.twosigma.beakerx.chart.heatmap.HeatMap;
 import com.twosigma.beakerx.kernel.magic.command.MagicCommandConfigurationMock;
 import com.twosigma.beakerx.kernel.msg.MessageCreator;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -45,20 +45,20 @@ public class HeatMapSerializerTest {
   JsonGenerator jgen;
   StringWriter sw;
 
-  @BeforeClass
+  @BeforeAll
   public static void initClassStubData() {
     mapper = new ObjectMapper();
     heatMapSerializer = new HeatMapSerializer();
   }
 
-  @Before
+  @BeforeEach
   public void initTestStubData() throws IOException {
     sw = new StringWriter();
     jgen = mapper.getJsonFactory().createJsonGenerator(sw);
     KernelManager.register(new KernelTest(new BeakerXCommRepositoryMock(), MessageCreator.get(), new MagicCommandConfigurationMock()));
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

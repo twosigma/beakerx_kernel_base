@@ -22,9 +22,9 @@ import com.twosigma.beakerx.kernel.comm.BxComm;
 import com.twosigma.beakerx.kernel.comm.TargetNamesEnum;
 import com.twosigma.beakerx.kernel.magic.command.MagicCommandConfigurationMock;
 import com.twosigma.beakerx.kernel.msg.MessageCreator;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.Date;
@@ -40,7 +40,7 @@ public class NamespaceClientTest {
   private NamespaceClient namespaceClient;
   private KernelTest kernel;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     CommRepository commRepository = new BeakerXCommRepositoryMock();
     namespaceClient = new NamespaceClient(new AutotranslationServiceTestMock(), new DefaultBeakerXJsonSerializer(), commRepository);
@@ -49,7 +49,7 @@ public class NamespaceClientTest {
     commRepository.addComm("commId", new BxComm(TargetNamesEnum.BEAKER_AUTOTRANSLATION));
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     kernel.exit();
     KernelManager.register(null);

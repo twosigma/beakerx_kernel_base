@@ -23,9 +23,9 @@ import com.fasterxml.jackson.databind.ser.DefaultSerializerProvider;
 import com.google.common.collect.Lists;
 import com.twosigma.beakerx.chart.xychart.plotitem.Area;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -39,13 +39,13 @@ public class BasedXYGraphicsSerializerTest {
   StringWriter sw;
   Area area;
 
-  @BeforeClass
+  @BeforeAll
   public static void initClassStubData() {
     mapper = new ObjectMapper();
     basedXYGraphicsSerializer = new AreaSerializer();
   }
 
-  @Before
+  @BeforeEach
   public void initTestStubData() throws IOException {
     sw = new StringWriter();
     jgen = mapper.getJsonFactory().createJsonGenerator(sw);

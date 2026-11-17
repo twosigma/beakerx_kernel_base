@@ -24,11 +24,11 @@ import com.twosigma.beakerx.kernel.msg.MessageCreator;
 import com.twosigma.beakerx.message.Header;
 import com.twosigma.beakerx.message.Message;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -43,24 +43,24 @@ public class CompleteHandlerTest {
   private static KernelTest kernel;
   private static EvaluatorTest evaluator;
 
-  @BeforeClass
+  @BeforeAll
   public static void setUpClass() {
     evaluator = new EvaluatorTest();
     kernel = new KernelTest("sid", evaluator, MessageCreator.get(), new MagicCommandConfigurationMock());
   }
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     completeHandler = new CompleteHandler(kernel);
     message = createAutocompleteMsg();
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     kernel.clearSentMessages();
   }
 
-  @AfterClass
+  @AfterAll
   public static void tearDownClass() throws Exception {
     evaluator.exit();
   }

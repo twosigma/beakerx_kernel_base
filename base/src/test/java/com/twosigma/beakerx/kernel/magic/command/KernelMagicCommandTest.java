@@ -24,29 +24,29 @@ import com.twosigma.beakerx.kernel.msg.JupyterMessages;
 import com.twosigma.beakerx.kernel.msg.MessageCreator;
 import com.twosigma.beakerx.message.Header;
 import com.twosigma.beakerx.message.Message;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import static com.twosigma.beakerx.MessageFactorTest.commMsg;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Ignore
+@Disabled
 public class KernelMagicCommandTest {
 
     private KernelTest kernel;
     private EvaluatorTest evaluator;
     private CodeFactory codeFactory;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         this.evaluator = new EvaluatorTest();
         this.kernel = new KernelTest("id", evaluator, MessageCreator.get(), new MagicCommandConfigurationMock());
         codeFactory = new CodeFactory(MessageCreator.get(), SimpleEvaluationObjectFactory.get());
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         kernel.exit();
     }

@@ -26,8 +26,8 @@ import com.twosigma.beakerx.kernel.msg.JupyterMessages;
 import com.twosigma.beakerx.kernel.msg.MessageCreator;
 import com.twosigma.beakerx.message.Message;
 import com.twosigma.beakerx.widget.TestWidgetUtils;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
@@ -42,7 +42,7 @@ public class AsyncMagicCommandTest {
   private EvaluatorTest.BeakexClientTestImpl beakerXClient;
   private CodeFactory codeFactory;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     beakerXClient = new EvaluatorTest.BeakexClientTestImpl();
     EvaluatorTest evaluator = new EvaluatorTest(beakerXClient);

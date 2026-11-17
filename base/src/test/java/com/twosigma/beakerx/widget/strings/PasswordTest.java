@@ -22,9 +22,9 @@ import com.twosigma.beakerx.kernel.KernelManager;
 import com.twosigma.beakerx.kernel.comm.Comm;
 import com.twosigma.beakerx.message.Message;
 import com.twosigma.beakerx.widget.Password;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -46,13 +46,13 @@ public class PasswordTest {
 
     private KernelTest groovyKernel;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         groovyKernel = KernelTestFactory.getKernel();
         KernelManager.register(groovyKernel);
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         KernelManager.register(null);
     }

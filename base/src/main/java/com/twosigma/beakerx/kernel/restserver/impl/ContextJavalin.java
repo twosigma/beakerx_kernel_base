@@ -19,13 +19,13 @@ import com.twosigma.beakerx.kernel.restserver.Context;
 
 public class ContextJavalin implements Context {
 
-  private io.javalin.Context ctx;
+  private io.javalin.http.Context ctx;
 
-  public ContextJavalin(io.javalin.Context ctx) {
+  public ContextJavalin(io.javalin.http.Context ctx) {
     this.ctx = ctx;
   }
 
   public String param(String name) {
-    return ctx.param(name);
+    return ctx.pathParam(name);
   }
 }

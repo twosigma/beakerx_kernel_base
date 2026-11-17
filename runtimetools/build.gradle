@@ -16,16 +16,15 @@
 
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
 
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId 'com.twosigma'
-            artifactId 'beakerx-runtimetools'
-            version "$beakerxVersion"
+            groupId = 'com.twosigma'
+            artifactId = 'beakerx-runtimetools'
+            version = "$beakerxVersion"
             from components.java
         }
     }

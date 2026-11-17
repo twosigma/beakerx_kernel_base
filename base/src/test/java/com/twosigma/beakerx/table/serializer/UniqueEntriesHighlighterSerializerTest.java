@@ -26,10 +26,10 @@ import com.twosigma.beakerx.table.highlight.HighlightStyle;
 import com.twosigma.beakerx.table.highlight.TableDisplayCellHighlighter;
 import com.twosigma.beakerx.table.highlight.UniqueEntriesHighlighter;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -40,20 +40,20 @@ public class UniqueEntriesHighlighterSerializerTest {
   private static ObjectMapper mapper;
   private static UniqueEntriesHighlighterSerializer serializer;
 
-  @BeforeClass
+  @BeforeAll
   public static void setUpClass() {
     mapper = new ObjectMapper();
     serializer = new UniqueEntriesHighlighterSerializer();
   }
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     KernelManager.register(KernelTestFactory.getKernel());
     sw = new StringWriter();
     jgen = mapper.getFactory().createGenerator(sw);
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

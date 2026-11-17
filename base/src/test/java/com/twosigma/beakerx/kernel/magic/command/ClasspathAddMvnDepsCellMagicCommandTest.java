@@ -27,9 +27,9 @@ import com.twosigma.beakerx.message.Message;
 import com.twosigma.beakerx.widget.TestWidgetUtils;
 import org.apache.commons.io.FileUtils;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -61,14 +61,14 @@ public class ClasspathAddMvnDepsCellMagicCommandTest {
   private static EvaluatorTest evaluator;
   private MagicCommandConfigurationMock configuration = new MagicCommandConfigurationMock();
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     evaluator = new EvaluatorTest();
     kernel = new KernelTest("id2", evaluator, MessageCreator.get(), new MagicCommandConfigurationMock());
     prepareLocalMavenRepository();
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     evaluator.exit();
   }

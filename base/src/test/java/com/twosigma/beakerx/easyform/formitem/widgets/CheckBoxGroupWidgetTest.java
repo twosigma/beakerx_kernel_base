@@ -19,14 +19,14 @@ import com.twosigma.beakerx.easyform.EasyFormComponent;
 import com.twosigma.beakerx.widget.Label;
 import com.twosigma.beakerx.message.Message;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static com.twosigma.beakerx.widget.TestWidgetUtils.getValueForProperty;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CheckBoxGroupWidgetTest extends EasyFormWidgetTest {
 
@@ -39,7 +39,7 @@ public class CheckBoxGroupWidgetTest extends EasyFormWidgetTest {
     CheckBoxGroupWidget widget = new CheckBoxGroupWidget(newValue);
     kernel.clearPublishedMessages();
     //then
-    assertTrue("Comm msgs should be 0", kernel.getPublishedMessages().size() == 0);
+    assertTrue(kernel.getPublishedMessages().size() == 0, "Comm msgs should be 0");
     Assertions.assertThat(widget.getValue()).isEqualTo(EMPTY);
   }
 

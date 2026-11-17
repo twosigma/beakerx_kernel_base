@@ -19,8 +19,8 @@ package com.twosigma.beakerx.chart.categoryplot.plotitem;
 import com.twosigma.beakerx.chart.Color;
 import com.twosigma.beakerx.chart.xychart.plotitem.ShapeType;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
@@ -28,7 +28,7 @@ public class CategoryPointsTest {
 
   CategoryPoints categoryPoints;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     categoryPoints = new CategoryPoints();
   }

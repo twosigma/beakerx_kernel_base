@@ -19,15 +19,15 @@ package com.twosigma.beakerx.jvm.serialization;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class ResultsDeserializerTest {
 
   private String json;
   private boolean payload;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     payload = true;
     json = "{\"type\":\"Results\",\"payload\":" + payload + "}";

@@ -26,9 +26,9 @@ import com.twosigma.beakerx.widget.GridView;
 import com.twosigma.beakerx.widget.HBox;
 import com.twosigma.beakerx.widget.IntText;
 import com.twosigma.beakerx.widget.TestWidgetUtils;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;
@@ -41,13 +41,13 @@ public class GridOutputContainerLayoutManagerTest {
 
   private KernelTest kernel;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     kernel = KernelTestFactory.getKernel();
     KernelManager.register(kernel);
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

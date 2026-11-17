@@ -20,9 +20,9 @@ import com.twosigma.beakerx.kernel.KernelManager;
 import com.twosigma.beakerx.KernelTest;
 import com.twosigma.beakerx.kernel.magic.command.MagicCommandConfigurationMock;
 import com.twosigma.beakerx.kernel.msg.MessageCreator;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -35,7 +35,7 @@ public class CombinedPlotTest {
   private CombinedPlot combinedPlot;
   private KernelTest kernel;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     kernel = new KernelTest(MessageCreator.get(), new MagicCommandConfigurationMock());
     KernelManager.register(kernel);
@@ -43,7 +43,7 @@ public class CombinedPlotTest {
     combinedPlot.display();
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     KernelManager.register(null);
   }

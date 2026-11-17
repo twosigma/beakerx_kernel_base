@@ -18,8 +18,8 @@ package com.twosigma.beakerx.chart.serializer;
 import net.sf.jtreemap.swing.DefaultValue;
 import net.sf.jtreemap.swing.TreeMapNode;
 import org.jetbrains.annotations.NotNull;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -31,7 +31,7 @@ public class TreeMapReducerTest {
   public static final int LIMIT = 1000;
   private TreeMapReducer sut;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     sut = new TreeMapReducer(LIMIT);
   }

@@ -20,7 +20,7 @@ import com.twosigma.beakerx.chart.serializer.CrosshairSerializer;
 import com.twosigma.beakerx.chart.serializer.YAxisSerializer;
 import com.twosigma.beakerx.chart.xychart.plotitem.Crosshair;
 import com.twosigma.beakerx.chart.xychart.plotitem.YAxis;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
